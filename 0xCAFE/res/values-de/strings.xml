@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">0xCAFE</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="description">Rechne eine Zahl von einer Basis in eine andere um.</string>
+    <string name="input_hint">Gib eine Zahl ein</string>
+    <string name="convert">Konvertieren</string>
+    <string name="output_error_incompatible">Inkompatible Eingabezahl</string>
+    <string-array name="types">
+        <item>dual (2)</item>
+        <item>oktal (8)</item>
+        <item>dezimal (10)</item>
+        <item>hexadezimal (16)</item>
+    </string-array>
+</resources>
