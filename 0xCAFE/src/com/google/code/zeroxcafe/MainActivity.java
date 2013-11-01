@@ -1,7 +1,5 @@
 package com.google.code.zeroxcafe;
 
-import java.util.Locale;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -48,7 +46,7 @@ public class MainActivity extends Activity {
 
 	private void initSpinner(Spinner spinner) {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-				this, R.array.types, android.R.layout.simple_spinner_item);
+				this, R.array.bases, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 
@@ -90,15 +88,13 @@ public class MainActivity extends Activity {
 		} else {
 			int baseFrom = getBaseByPos(inputSpinner.getSelectedItemPosition());
 			int baseTo = getBaseByPos(outputSpinner.getSelectedItemPosition());
-			String input = inputEdit.getText().toString()
-					.toLowerCase(Locale.US);
+			String input = inputEdit.getText().toString();
 
 			if (MathUtils.isCompatible(input, baseFrom)) {
 				String output = MathUtils.convert(input, baseFrom, baseTo);
 				outputEdit.setText(output);
 			} else {
-				outputEdit.setText(getResources().getString(
-						R.string.output_error_incompatible));
+				outputEdit.setText(R.string.output_error_incompatible);
 			}
 		}
 	}
