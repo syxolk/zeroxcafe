@@ -5,9 +5,8 @@
     <string name="action_settings">Einstellungen</string>
     <string name="description">Rechne eine Zahl von einer Basis in eine andere um.</string>
     <string name="input_hint">Gib eine Zahl ein</string>
-    <string name="convert">Konvertieren</string>
     <string name="output_error_incompatible">Inkompatible Eingabezahl</string>
-    <string-array name="types">
+    <string-array name="bases">
         <item>dual (2)</item>
         <item>oktal (8)</item>
         <item>dezimal (10)</item>
