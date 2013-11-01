@@ -2,15 +2,25 @@
 <resources>
 
     <string name="app_name">0xCAFE</string>
-    <string name="action_settings">Settings</string>
     <string name="description">Convert a number from one base into another.</string>
     <string name="input_hint">Enter a number</string>
     <string name="output_error_incompatible">Incompatible Number.</string>
+
     <string-array name="bases">
         <item>binary (2)</item>
         <item>octal (8)</item>
         <item>decimal (10)</item>
         <item>hexadecimal (16)</item>
     </string-array>
+
+    <string name="title_activity_help">Help</string>
+    <string name="help_icon_title">Logo of 0xCAFE</string>
+    <string name="help_description">
+        With 0xCAFE you can convert numbers from one base into another.
+        The App got its name from programming languages like C, where a hex number starts with 0x.
+        Therefore the expression \'0xCAFE\' is a valid number in C, with the decimal value 51966, try it out :)
+    </string>
+    <string name="help_developers">Developed by Hans and Fabian</string>
+    <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
 
 </resources>

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +21,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.code.zeroxcafe.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName="com.google.code.zeroxcafe.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.google.code.zeroxcafe.MainActivity" />
         </activity>
     </application>
 
