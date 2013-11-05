@@ -22,6 +22,8 @@ import android.widget.TextView;
  */
 public class MainActivity extends Activity {
 
+	 CustomKeyboard mCustomKeyboard;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class MainActivity extends Activity {
 				updateValue();
 			}
 		});
+		
+		 mCustomKeyboard= new CustomKeyboard(this, R.id.keyboardview, R.xml.hexkbd );
+		 mCustomKeyboard.registerEditText(R.id.inputText);
 	}
 
 	private void initSpinner(Spinner spinner) {
@@ -126,4 +131,8 @@ public class MainActivity extends Activity {
 	        return super.onOptionsItemSelected(item);
 	    }
 	}
+	
+	@Override public void onBackPressed() {
+	    if( mCustomKeyboard.isCustomKeyboardVisible() ) mCustomKeyboard.hideCustomKeyboard(); else this.finish();
+	}	
 }
