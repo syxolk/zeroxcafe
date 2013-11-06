@@ -31,9 +31,8 @@
         <Key android:codes="55004" android:keyIcon="@drawable/ic_action_next" android:keyEdgeFlags="right" />
     </Row>
     <Row>
-        <Key android:codes="48"    android:keyLabel="0" android:keyWidth="25%p" android:horizontalGap="6.25%p" android:keyEdgeFlags="left" />
-        <Key android:codes="-3"    android:keyIcon="@drawable/ic_action_keyboard" android:keyWidth="25%p" android:horizontalGap="12.50%p" />
-        <Key android:codes="55000" android:keyLabel="PREV" android:horizontalGap="6.25%p" />
-        <Key android:codes="55005" android:keyLabel="NEXT" android:keyEdgeFlags="right" />
+        <Key android:codes="48"    android:keyLabel="0" android:keyWidth="12.5%p" android:horizontalGap="12.5%p" android:keyEdgeFlags="left" />
+        <Key android:codes="46"    android:keyLabel="." android:keyWidth="12.5%p" />
+        <Key android:codes="-3"    android:keyIcon="@drawable/ic_action_keyboard" android:keyWidth="25%p" android:horizontalGap="6.25%p" android:keyEdgeFlags="right" />
     </Row>
 </Keyboard>
