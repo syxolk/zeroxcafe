@@ -97,11 +97,16 @@ public class MainActivity extends Activity {
 			int baseTo = getBaseByPos(outputSpinner.getSelectedItemPosition());
 			String input = inputEdit.getText().toString();
 
-			if (MathUtils.isCompatible(input, baseFrom)) {
+			boolean compatible=MathUtils.isCompatible(input, baseFrom);
+			boolean maximum1DP=MathUtils.hasMaximumOneDecimalPoint(input);
+			
+			if (compatible && maximum1DP) {
 				String output = MathUtils.convert(input, baseFrom, baseTo);
 				outputEdit.setText(output);
-			} else {
+			} else if(!compatible) {
 				outputEdit.setText(R.string.output_error_incompatible);
+			} else if(!maximum1DP) {
+				outputEdit.setText(R.string.output_error_too_much_decimal_points);
 			}
 		}
 	}

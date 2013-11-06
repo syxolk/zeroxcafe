@@ -5,6 +5,7 @@
     <string name="description">Rechne eine Zahl von einer Basis in eine andere um.</string>
     <string name="input_hint">Gib eine Zahl ein</string>
     <string name="output_error_incompatible">Inkompatible Eingabezahl</string>
+    <string name="output_error_too_much_decimal_points">Die Zahl hat mehr als einen Dezimalpunkt.</string>
     
     <string-array name="bases">
         <item>dual (2)</item>

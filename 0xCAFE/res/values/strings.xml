@@ -5,6 +5,7 @@
     <string name="description">Convert a number from one base into another.</string>
     <string name="input_hint">Enter a number</string>
     <string name="output_error_incompatible">Incompatible Number.</string>
+    <string name="output_error_too_much_decimal_points">Number has more than one decimal point.</string>
 
     <string-array name="bases">
         <item>binary (2)</item>
