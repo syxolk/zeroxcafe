@@ -43,6 +43,26 @@ public class MathUtils {
 
 		return true;
 	}
+	
+	public static boolean hasMaximumOneDecimalPoint(String number) {
+		boolean found=false;
+		
+		for(int i=0; i<number.length(); i++) {
+			if(number.charAt(i)=='.') {
+				if(found) {
+					return false;
+				} else {
+					found=true;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
+	public static boolean hasDecimalPoint(String number) {
+		return number.indexOf('.')!=-1;
+	}
 
 	/**
 	 * Rechnet eine Zahl von einer Basis in eine andere um. Dazu wird die
@@ -57,8 +77,11 @@ public class MathUtils {
 	 * @return Zahl in der Zahl-Basis als String
 	 */
 	public static String convert(String number, int baseFrom, int baseTo) {
-		//return new BigInteger(number, baseFrom).toString(baseTo);
-		return convertFromInt(convertToInt(number, baseFrom),baseTo);
+		if(hasDecimalPoint(number)) {
+			return convertFromInt(convertToInt(number, baseFrom),baseTo);
+		} else {
+			return new BigInteger(number, baseFrom).toString(baseTo);
+		}
 	}
 	
 	private static int digit(char c, int base) {
