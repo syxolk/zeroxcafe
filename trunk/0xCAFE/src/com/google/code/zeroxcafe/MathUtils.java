@@ -2,6 +2,7 @@ package com.google.code.zeroxcafe;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Locale;
 
 /**
  * Klasse zum Umrechnen von Zahlen in andere Basen und prüfen der Kompatibilät
@@ -95,7 +96,7 @@ public class MathUtils {
 		if (hasDecimalPoint(number)) {
 			return convertFromInt(convertToInt(number, baseFrom), baseTo);
 		} else {
-			return new BigInteger(number, baseFrom).toString(baseTo);
+			return new BigInteger(number, baseFrom).toString(baseTo).toUpperCase(Locale.ENGLISH);
 		}
 	}
 
