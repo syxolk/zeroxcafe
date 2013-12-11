@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+/**
+ * Simple activity with help and about text
+ * 
+ * @author Hans
+ */
 public class HelpActivity extends Activity {
 
 	@Override

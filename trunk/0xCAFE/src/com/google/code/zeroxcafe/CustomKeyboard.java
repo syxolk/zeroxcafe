@@ -15,6 +15,14 @@ import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+/**
+ * Custom keyboard helper class. The keybboard ist designed for typing numbers
+ * and hex-characters. The keyboard was inspired by a <a
+ * href="http://www.fampennings.nl/maarten/android/09keyboard/index.htm">custom
+ * keyboard tutorial</a>.
+ * 
+ * @author Hans
+ */
 public class CustomKeyboard {
 	public final static int CodeDelete = -5; // Keyboard.KEYCODE_DELETE
 	public final static int CodeCancel = -3; // Keyboard.KEYCODE_CANCEL
