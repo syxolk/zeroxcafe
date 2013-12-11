@@ -16,14 +16,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
- * Haupt-Activity der App.
+ * Main-activity of the app.
  * 
  * @author Hans
  */
 public class MainActivity extends Activity {
 
-	 CustomKeyboard mCustomKeyboard;
-	
+	CustomKeyboard mCustomKeyboard;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,9 +46,10 @@ public class MainActivity extends Activity {
 				updateValue();
 			}
 		});
-		
-		 mCustomKeyboard= new CustomKeyboard(this, R.id.keyboardview, R.xml.hexkbd );
-		 mCustomKeyboard.registerEditText(R.id.inputText);
+
+		mCustomKeyboard = new CustomKeyboard(this, R.id.keyboardview,
+				R.xml.hexkbd);
+		mCustomKeyboard.registerEditText(R.id.inputText);
 	}
 
 	private void initSpinner(Spinner spinner) {
@@ -77,8 +78,8 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * Diese Methode muss aufgerufen werden, wenn sich die Eingabe-Zahl oder die
-	 * Basen geändert haben.
+	 * This method is being called if the input number or other parameters
+	 * change.
 	 */
 	private void updateValue() {
 		Spinner inputSpinner = (Spinner) findViewById(R.id.inputType);
@@ -97,16 +98,17 @@ public class MainActivity extends Activity {
 			int baseTo = getBaseByPos(outputSpinner.getSelectedItemPosition());
 			String input = inputEdit.getText().toString();
 
-			boolean compatible=MathUtils.isCompatible(input, baseFrom);
-			boolean maximum1DP=MathUtils.hasMaximumOneDecimalPoint(input);
-			
+			boolean compatible = MathUtils.isCompatible(input, baseFrom);
+			boolean maximum1DP = MathUtils.hasMaximumOneDecimalPoint(input);
+
 			if (compatible && maximum1DP) {
 				String output = MathUtils.convert(input, baseFrom, baseTo);
 				outputEdit.setText(output);
-			} else if(!compatible) {
+			} else if (!compatible) {
 				outputEdit.setText(R.string.output_error_incompatible);
-			} else if(!maximum1DP) {
-				outputEdit.setText(R.string.output_error_too_much_decimal_points);
+			} else if (!maximum1DP) {
+				outputEdit
+						.setText(R.string.output_error_too_much_decimal_points);
 			}
 		}
 	}
@@ -125,19 +127,23 @@ public class MainActivity extends Activity {
 			return 10;
 		}
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.action_help:
-	        startActivity(new Intent(this,HelpActivity.class));
-	        return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.action_help:
+			startActivity(new Intent(this, HelpActivity.class));
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
-	@Override public void onBackPressed() {
-	    if( mCustomKeyboard.isCustomKeyboardVisible() ) mCustomKeyboard.hideCustomKeyboard(); else this.finish();
-	}	
+
+	@Override
+	public void onBackPressed() {
+		if (mCustomKeyboard.isCustomKeyboardVisible())
+			mCustomKeyboard.hideCustomKeyboard();
+		else
+			this.finish();
+	}
 }

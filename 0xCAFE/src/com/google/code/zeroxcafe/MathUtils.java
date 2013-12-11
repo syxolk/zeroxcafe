@@ -3,42 +3,77 @@ package com.google.code.zeroxcafe;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
- * Klasse zum Umrechnen von Zahlen in andere Basen und prüfen der Kompatibilät
- * von Zahlen auf bestimmte Basen.
+ * A utility class to convert numbers from one radix into another. It also
+ * offers methods to check the compatibility of numbers with specific radixes.
  * 
  * @author Hans
  */
 public class MathUtils {
 
 	/**
-	 * Prüft, ob eine Zahl kompatibel zu einer Basis ist, d.h. ob nur gültige
-	 * Ziffern und Zeichen aus der Basis verwendet werden.
+	 * Maximum exponent to use when converting a decimal number into a number of
+	 * another radix. Otherwise there will be an infinity loop.
+	 */
+	private static final int CONVERT_FROM_DECIMAL_MAX_EXPONENT = 100;
+
+	/**
+	 * This class always uses the american decimal point for its parsing and
+	 * converting.
+	 */
+	private static final char DECIMAL_POINT = '.';
+
+	/**
+	 * Pattern for removing leading zeroes.
+	 */
+	private static final Pattern REMOVE_LEADING_ZEROES = Pattern.compile("^0*");
+
+	/**
+	 * Pattern for removing trailing zeroes.
+	 */
+	private static final Pattern REMOVE_TRAILING_ZEROES = Pattern
+			.compile("0*$");
+
+	/**
+	 * Checks whether a number is compatible to a radix. That means it returns
+	 * true if there are only points (.) and numbers of that radix (e.g. for
+	 * radix 10: 0 to 9) in the number.
 	 * 
 	 * @param number
-	 *            Zahl als String
-	 * @param base
-	 *            Basis
-	 * @return true, wenn kompatibel, sonst false
+	 *            number as a string
+	 * @param radix
+	 *            the radix to use (2..36)
+	 * @return true, if compatible, otherwise false
+	 * @throws NullPointerException
+	 *             if number is null
+	 * @throws IllegalArgumentException
+	 *             if radix is outside of the supported range
 	 */
-	public static boolean isCompatible(String number, int base) {
+	public static boolean isCompatible(String number, int radix) {
+		if (number == null)
+			throw new NullPointerException("number is null");
+		if (radix < Character.MIN_RADIX || radix > Character.MAX_RADIX)
+			throw new IllegalArgumentException("Radix out of supported range: "
+					+ radix);
+
 		for (int i = 0; i < number.length(); i++) {
 			char ch = number.charAt(i);
 
 			if (ch >= '0' && ch <= '9') {
-				if (ch - '0' >= base) {
+				if (ch - '0' >= radix) {
 					return false;
 				}
 			} else if (ch >= 'a' && ch <= 'z') {
-				if (ch - 'a' + 10 >= base) {
+				if (ch - 'a' + 10 >= radix) {
 					return false;
 				}
 			} else if (ch >= 'A' && ch <= 'Z') {
-				if (ch - 'A' + 10 >= base) {
+				if (ch - 'A' + 10 >= radix) {
 					return false;
 				}
-			} else if (ch != '.') {
+			} else if (ch != DECIMAL_POINT) {
 				return false;
 			}
 		}
@@ -47,17 +82,22 @@ public class MathUtils {
 	}
 
 	/**
-	 * Prüft, ob eine Zahl maximal einen Dezimal-Punkt besitzt.
+	 * Checks whether a number has only one decimal point (.).
 	 * 
 	 * @param number
-	 *            Zahl
-	 * @return true, wenn maximal ein Dezimalpunkt, sonst false
+	 *            number as a string
+	 * @return true, if the number has only one decimal point, otherwise false
+	 * @throws NullPointerException
+	 *             if number is null
 	 */
 	public static boolean hasMaximumOneDecimalPoint(String number) {
+		if (number == null)
+			throw new NullPointerException("number is null");
+
 		boolean found = false;
 
 		for (int i = 0; i < number.length(); i++) {
-			if (number.charAt(i) == '.') {
+			if (number.charAt(i) == DECIMAL_POINT) {
 				if (found) {
 					return false;
 				} else {
@@ -70,56 +110,70 @@ public class MathUtils {
 	}
 
 	/**
-	 * Prüft, ob eine Zahl einen Dezimal-Punkt hat.
+	 * Prüft, ob eine Zahl einen Dezimal-Punkt hat. Checks whether a number has
+	 * at least one decimal point (.).
 	 * 
 	 * @param number
-	 *            Zahl
-	 * @return true, wenn mindestens ein Dezimal-Punkt.
+	 *            number as a string
+	 * @return true, if at least one decimal point, otherwise false
 	 */
 	private static boolean hasDecimalPoint(String number) {
-		return number.indexOf('.') != -1;
+		return number.indexOf(DECIMAL_POINT) != -1;
 	}
 
 	/**
-	 * Rechnet eine Zahl von einer Basis in eine andere um. Dazu wird die
-	 * BigInteger-Klasse verwendet.
+	 * Converts a number from one radix into another. For that it uses the
+	 * {@link java.math.BigDecimal} class if there is no decimal point in the
+	 * number, otherwise it uses a self written method that may be slower.
 	 * 
 	 * @param number
-	 *            Zahl als String
-	 * @param baseFrom
-	 *            altuelle Basis
-	 * @param baseTo
-	 *            Ziel-Basis
-	 * @return Zahl in der Zahl-Basis als String
+	 *            number as a string
+	 * @param radixFrom
+	 *            source radix
+	 * @param radixTo
+	 *            target radix
+	 * @return number in the target radix as a string
 	 */
-	public static String convert(String number, int baseFrom, int baseTo) {
+	public static String convert(String number, int radixFrom, int radixTo) {
+		if (number == null)
+			throw new NullPointerException("number is null");
+		if (radixFrom < Character.MIN_RADIX || radixFrom > Character.MAX_RADIX)
+			throw new IllegalArgumentException(
+					"source radix is out of supported range: " + radixFrom);
+		if (radixTo < Character.MIN_RADIX || radixTo > Character.MAX_RADIX)
+			throw new IllegalArgumentException(
+					"target radix is out of supported range: " + radixTo);
+
 		if (hasDecimalPoint(number)) {
-			return convertFromInt(convertToInt(number, baseFrom), baseTo);
+			return convertFromDecimal(convertToDecimal(number, radixFrom),
+					radixTo);
 		} else {
-			return new BigInteger(number, baseFrom).toString(baseTo).toUpperCase(Locale.ENGLISH);
+			return new BigInteger(number, radixFrom).toString(radixTo)
+					.toUpperCase(Locale.ENGLISH);
 		}
 	}
 
 	/**
-	 * Wandelt ein Symbol eines Zahlensystems in seinen Dezimal-Wert um.
+	 * Converts a character of a radix into its decimal value. This method just
+	 * wraps {@link java.lang.Character#digit(char, int)}
 	 * 
 	 * @param c
-	 *            Symbol
-	 * @param base
-	 *            Basis des Zahlensystems
-	 * @return
+	 *            character
+	 * @param radix
+	 *            radix of a number system
+	 * @return decimal number that was represented by the character
 	 */
-	private static int digit(char c, int base) {
-		return Character.digit(c, base);
+	private static int digit(char c, int radix) {
+		return Character.digit(c, radix);
 	}
 
 	/**
-	 * Wandelt einen Dezimal-Wert in in Zeichen eines Zahlensystems um. Dabei
-	 * werden die die Zahlen ab 10 mit den Zeichen ab A repräsentiert.
+	 * Converts a decimal value into the character of a number system. Decimal
+	 * values from 10 up are represented by upper case letters starting with A.
 	 * 
 	 * @param digit
-	 *            Dezimal-Wert
-	 * @return Zeichen
+	 *            decimal value
+	 * @return character
 	 */
 	private static char character(int digit) {
 		if (digit >= 0 && digit <= 9) {
@@ -132,38 +186,38 @@ public class MathUtils {
 	}
 
 	/**
-	 * Konvertiert eine Zahl einer beliebigen Basis in eine Dezimal-Zahl.
+	 * Converts a number from the given radix into a decimal number.
 	 * 
 	 * @param number
-	 *            Zahl einer beliebigen Basis
-	 * @param base
-	 *            Eingabe-Basis
-	 * @return Dezimal-Zahl
+	 *            number as a string in the given radix
+	 * @param radix
+	 *            source radix
+	 * @return decimal number
 	 */
-	private static BigDecimal convertToInt(String number, int base) {
-		if (base == 10)
+	private static BigDecimal convertToDecimal(String number, int radix) {
+		if (radix == 10)
 			return new BigDecimal(number);
 
 		BigDecimal result = new BigDecimal(0);
 
-		int decimalPoint = number.indexOf('.');
+		int decimalPoint = number.indexOf(DECIMAL_POINT);
 		boolean hasDecimalPoint = decimalPoint != -1;
 
 		if (decimalPoint == -1)
 			decimalPoint = number.length();
 
 		for (int i = 0; i < decimalPoint; i++) {
-			int digit = digit(number.charAt(decimalPoint - 1 - i), base);
+			int digit = digit(number.charAt(decimalPoint - 1 - i), radix);
 			result = result.add(new BigDecimal(digit).multiply(new BigDecimal(
-					base).pow(i)));
+					radix).pow(i)));
 		}
 
 		if (hasDecimalPoint) {
 			for (int i = decimalPoint + 1; i < number.length(); i++) {
 				int exponent = i - decimalPoint;
-				int digit = digit(number.charAt(i), base);
+				int digit = digit(number.charAt(i), radix);
 				result = result.add(new BigDecimal(digit)
-						.divide(new BigDecimal(base).pow(exponent)));
+						.divide(new BigDecimal(radix).pow(exponent)));
 			}
 		}
 
@@ -171,15 +225,15 @@ public class MathUtils {
 	}
 
 	/**
-	 * Konvertiert eine Dezimal-Zahl in eine Zahl beliebiger Basis.
+	 * Converts a decimal number into a number of the given radix.
 	 * 
 	 * @param number
-	 *            Dezimal-Zahl
+	 *            decimal number
 	 * @param base
-	 *            Ausgabe-Basis
-	 * @return Zahl beliebiger Basis
+	 *            target radix
+	 * @return converted number in target radix
 	 */
-	private static String convertFromInt(BigDecimal number, int base) {
+	private static String convertFromDecimal(BigDecimal number, int base) {
 		if (base == 10)
 			return number.toPlainString();
 
@@ -193,40 +247,43 @@ public class MathUtils {
 
 		for (int ex = smallestExponent; ex >= 0; ex--) {
 			for (int factor = base - 1; factor >= 0; factor--) {
-				if (new BigDecimal(base).pow(ex)
-						.multiply(new BigDecimal(factor)).compareTo(number) <= 0) {
+				BigDecimal currentValue = new BigDecimal(base).pow(ex)
+						.multiply(new BigDecimal(factor));
+
+				if (currentValue.compareTo(number) <= 0) {
 					result.append(character(factor));
-					number = number.subtract(new BigDecimal(base).pow(ex)
-							.multiply(new BigDecimal(factor)));
+					number = number.subtract(currentValue);
 					break;
 				}
 			}
 		}
 
 		if (!number.equals(BigDecimal.ZERO)) {
-			result.append('.');
+			result.append(DECIMAL_POINT);
 		}
 
-		int ex = 1; // negative exponenten
-		int MAX_EX = 100;
-		while (!number.equals(BigDecimal.ZERO)) {
+		int ex = 1; // negative exponents
+		while (!number.equals(BigDecimal.ZERO)
+				&& ex <= CONVERT_FROM_DECIMAL_MAX_EXPONENT) {
 			for (int factor = base - 1; factor >= 0; factor--) {
-				if (new BigDecimal(factor).divide(new BigDecimal(base).pow(ex))
-						.compareTo(number) <= 0) {
+				BigDecimal currentValue = new BigDecimal(factor)
+						.divide(new BigDecimal(base).pow(ex));
+
+				if (currentValue.compareTo(number) <= 0) {
 					result.append(character(factor));
-					number = number.subtract(new BigDecimal(factor)
-							.divide(new BigDecimal(base).pow(ex)));
+					number = number.subtract(currentValue);
 					break;
 				}
 			}
 			ex++;
-			if (ex >= MAX_EX)
-				break;
 		}
 
-		String res = result.toString().replaceAll("^0*", "");
+		String res = result.toString();
+		// remove leading zeroes
+		res = REMOVE_LEADING_ZEROES.matcher(res).replaceFirst("");
 		if (hasDecimalPoint(res)) {
-			res = res.replaceAll("0*$", "");
+			//remove trailing zeroes
+			res = REMOVE_TRAILING_ZEROES.matcher(res).replaceFirst("");
 		}
 
 		return res;
