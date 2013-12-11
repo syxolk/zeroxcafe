@@ -282,8 +282,12 @@ public class MathUtils {
 		// remove leading zeroes
 		res = REMOVE_LEADING_ZEROES.matcher(res).replaceFirst("");
 		if (hasDecimalPoint(res)) {
-			//remove trailing zeroes
+			// remove trailing zeroes
 			res = REMOVE_TRAILING_ZEROES.matcher(res).replaceFirst("");
+			// remove decimal point if there are no decimal digits
+			if (res.charAt(res.length() - 1) == DECIMAL_POINT) {
+				res = res.substring(0, res.length() - 1);
+			}
 		}
 
 		return res;

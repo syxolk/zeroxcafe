@@ -21,6 +21,7 @@
         Die App bekam ihren Namen von Programmiersprachen wie C, bei denen Hex-Zahlen mit 0x beginnen.
         Deshalb ist der Ausdruck \'0xCAFE\' in C eine gültige Zahl, mit dem dezimalen Wert 51966, probier\'s aus :)
     </string>
-    <string name="help_developers">Entwickelt von Hans und Fabian</string>
+    <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
+
 </resources>
