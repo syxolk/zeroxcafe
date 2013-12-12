@@ -19,9 +19,9 @@
     <string name="help_description">
         With 0xCAFE you can convert numbers from one radix into another.
         The App got its name from programming languages like C, where a hex number starts with 0x.
-        Therefore the expression \'0xCAFE\' is a valid number in C, with the decimal value 51966, try it out :)
-    </string>
+        Therefore the expression \'0xCAFE\' is a valid number in C, with the decimal value 51966, try it out :)    </string>
     <string name="help_developers">Developed by Bitfröst Studios</string>
     <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
+    <string name="title_activity_wiki">Wiki</string>
 
 </resources>

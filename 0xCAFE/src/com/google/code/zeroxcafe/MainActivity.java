@@ -134,6 +134,9 @@ public class MainActivity extends Activity {
 		case R.id.action_help:
 			startActivity(new Intent(this, HelpActivity.class));
 			return true;
+		case R.id.action_wiki:
+			startActivity(new Intent(this, WikiActivity.class));
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

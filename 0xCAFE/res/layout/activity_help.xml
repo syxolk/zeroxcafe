@@ -9,12 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HelpActivity" >
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/help_icon_title"
-        android:src="@drawable/ic_launcher" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,12 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/help_developers" />
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/help_terms" 
         android:autoLink="web"
-        android:textSize="12sp"/>
+        android:text="@string/help_terms"
+        android:textSize="12sp" />
 
 </LinearLayout>
