@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.google.code.zeroxcafe.MainActivity" />
         </activity>
+        <activity
+            android:name="com.google.code.zeroxcafe.WikiActivity"
+            android:label="@string/title_activity_wiki"
+            android:parentActivityName="com.google.code.zeroxcafe.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.google.code.zeroxcafe.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
