@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
 public class MathUtils {
 
 	/**
-	 * Maximum exponent to use when converting a decimal number into a number of
-	 * another radix. Otherwise there will be an infinity loop.
+	 * Maximum number of loops to go through when converting a decimal number
+	 * into a number of another radix. Otherwise there will be an infinity loop.
 	 */
-	private static final int CONVERT_FROM_DECIMAL_MAX_EXPONENT = 100;
+	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 100;
 
 	/**
 	 * This class always uses the american decimal point for its parsing and
@@ -168,21 +168,31 @@ public class MathUtils {
 	}
 
 	/**
-	 * Converts a decimal value into the character of a number system. Decimal
-	 * values from 10 up are represented by upper case letters starting with A.
+	 * Removes all unneeded characters from a number: Removes all leading
+	 * zeroes. If the number has a decimal point then it removes all trailing
+	 * zeroes. If number ends with a decimal point then it removes it.
 	 * 
-	 * @param digit
-	 *            decimal value
-	 * @return character
+	 * @param number
+	 *            number to trim
+	 * @return trimmed number
 	 */
-	private static char character(int digit) {
-		if (digit >= 0 && digit <= 9) {
-			return (char) (digit + '0');
-		} else if (digit >= 10 && digit <= 35) {
-			return (char) (digit - 10 + 'A');
-		} else {
-			throw new IllegalArgumentException("Invalid digit: " + digit);
+	private static String trimNumber(String number) {
+		// remove trailing zeroes
+		number = REMOVE_LEADING_ZEROES.matcher(number).replaceFirst("");
+
+		if (hasDecimalPoint(number)) {
+			// remove trailing zeroes
+			number = REMOVE_TRAILING_ZEROES.matcher(number).replaceFirst("");
+			// remove decimal point if there are no decimal digits
+			if (number.charAt(number.length() - 1) == DECIMAL_POINT) {
+				number = number.substring(0, number.length() - 1);
+			}
 		}
+		if (number.length() == 0) {
+			number = "0";
+		}
+
+		return number;
 	}
 
 	/**
@@ -196,7 +206,7 @@ public class MathUtils {
 	 */
 	private static BigDecimal convertToDecimal(String number, int radix) {
 		if (radix == 10)
-			return new BigDecimal(number);
+			return new BigDecimal(trimNumber(number));
 
 		int decimalPoint = number.indexOf(DECIMAL_POINT);
 		boolean hasDecimalPoint = decimalPoint != -1;
@@ -208,14 +218,15 @@ public class MathUtils {
 
 		if (decimalPoint != 0)
 			result = new BigDecimal(new BigInteger(number.substring(0,
-					decimalPoint)));
+					decimalPoint), radix));
 
 		if (hasDecimalPoint) {
 			BigDecimal factor = BigDecimal.ONE;
+			BigDecimal bigRadix = new BigDecimal(radix);
 
 			for (int i = decimalPoint + 1; i < number.length(); i++) {
 				int digit = digit(number.charAt(i), radix);
-				factor = factor.multiply(new BigDecimal(radix));
+				factor = factor.multiply(bigRadix);
 				result = result.add(new BigDecimal(digit).divide(factor));
 			}
 		}
@@ -234,60 +245,43 @@ public class MathUtils {
 	 */
 	private static String convertFromDecimal(BigDecimal number, int base) {
 		if (base == 10)
-			return number.toPlainString();
-
-		int smallestExponent = 0;
-
-		while (number.compareTo(new BigDecimal(base).pow(smallestExponent)) >= 0) {
-			smallestExponent++;
-		}
+			return trimNumber(number.toPlainString());
 
 		StringBuilder result = new StringBuilder();
 
-		for (int ex = smallestExponent; ex >= 0; ex--) {
-			for (int factor = base - 1; factor >= 0; factor--) {
-				BigDecimal currentValue = new BigDecimal(base).pow(ex)
-						.multiply(new BigDecimal(factor));
+		String numberString = number.toPlainString();
+		int decimalPoint = numberString.indexOf(DECIMAL_POINT);
 
-				if (currentValue.compareTo(number) <= 0) {
-					result.append(character(factor));
-					number = number.subtract(currentValue);
-					break;
-				}
+		if (decimalPoint != -1) {
+
+			if (decimalPoint != 0) {
+				BigInteger integerPart = number.toBigInteger();
+				result.append(integerPart.toString(base));
+				number = number.subtract(new BigDecimal(integerPart));
 			}
-		}
 
-		if (!number.equals(BigDecimal.ZERO)) {
 			result.append(DECIMAL_POINT);
-		}
 
-		int ex = 1; // negative exponents
-		while (!number.equals(BigDecimal.ZERO)
-				&& ex <= CONVERT_FROM_DECIMAL_MAX_EXPONENT) {
-			for (int factor = base - 1; factor >= 0; factor--) {
-				BigDecimal currentValue = new BigDecimal(factor)
-						.divide(new BigDecimal(base).pow(ex));
+			int counter = 0;
 
-				if (currentValue.compareTo(number) <= 0) {
-					result.append(character(factor));
-					number = number.subtract(currentValue);
-					break;
-				}
+			while (number.compareTo(BigDecimal.ZERO) > 0
+					&& counter < CONVERT_FROM_DECIMAL_MAX_LOOPS) {
+				number = number.multiply(new BigDecimal(base));
+				BigInteger integerPart = number.toBigInteger();
+				result.append(integerPart.toString(base).toUpperCase(
+						Locale.ENGLISH));
+				number = number.subtract(new BigDecimal(integerPart));
+
+				counter++;
 			}
-			ex++;
+
+		} else {
+
+			result.append(number.toBigInteger().toString(base));
+
 		}
 
-		String res = result.toString();
-		// remove leading zeroes
-		res = REMOVE_LEADING_ZEROES.matcher(res).replaceFirst("");
-		if (hasDecimalPoint(res)) {
-			// remove trailing zeroes
-			res = REMOVE_TRAILING_ZEROES.matcher(res).replaceFirst("");
-			// remove decimal point if there are no decimal digits
-			if (res.charAt(res.length() - 1) == DECIMAL_POINT) {
-				res = res.substring(0, res.length() - 1);
-			}
-		}
+		String res = trimNumber(result.toString());
 
 		return res;
 	}
