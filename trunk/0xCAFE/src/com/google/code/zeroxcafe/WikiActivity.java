@@ -13,6 +13,12 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+/**
+ * Activity that shows the wiki HTML page. It uses an
+ * {@link android.webkit.WebView} for that.
+ * 
+ * @author Hans
+ */
 public class WikiActivity extends Activity {
 
 	private static final String RAW_HTML_RESOURCE_ENCODING = "utf-8";
@@ -27,7 +33,7 @@ public class WikiActivity extends Activity {
 		setupActionBar();
 
 		this.webView = (WebView) findViewById(R.id.content);
-		
+
 		new HtmlLoaderTask().execute();
 	}
 

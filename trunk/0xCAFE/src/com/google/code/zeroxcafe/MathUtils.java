@@ -198,26 +198,25 @@ public class MathUtils {
 		if (radix == 10)
 			return new BigDecimal(number);
 
-		BigDecimal result = new BigDecimal(0);
-
 		int decimalPoint = number.indexOf(DECIMAL_POINT);
 		boolean hasDecimalPoint = decimalPoint != -1;
 
 		if (decimalPoint == -1)
 			decimalPoint = number.length();
 
-		for (int i = 0; i < decimalPoint; i++) {
-			int digit = digit(number.charAt(decimalPoint - 1 - i), radix);
-			result = result.add(new BigDecimal(digit).multiply(new BigDecimal(
-					radix).pow(i)));
-		}
+		BigDecimal result = BigDecimal.ZERO;
+
+		if (decimalPoint != 0)
+			result = new BigDecimal(new BigInteger(number.substring(0,
+					decimalPoint)));
 
 		if (hasDecimalPoint) {
+			BigDecimal factor = BigDecimal.ONE;
+
 			for (int i = decimalPoint + 1; i < number.length(); i++) {
-				int exponent = i - decimalPoint;
 				int digit = digit(number.charAt(i), radix);
-				result = result.add(new BigDecimal(digit)
-						.divide(new BigDecimal(radix).pow(exponent)));
+				factor = factor.multiply(new BigDecimal(radix));
+				result = result.add(new BigDecimal(digit).divide(factor));
 			}
 		}
 
