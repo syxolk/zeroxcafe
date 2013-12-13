@@ -15,7 +15,6 @@
     </string-array>
 
     <string name="title_activity_help">Help</string>
-    <string name="help_icon_title">Logo of 0xCAFE</string>
     <string name="help_description">
         With 0xCAFE you can convert numbers from one radix into another.
         The App got its name from programming languages like C, where a hex number starts with 0x.

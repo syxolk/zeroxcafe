@@ -75,11 +75,11 @@
 	The Romans for example invented their own system consisting of the letters I, V, X, L, C, D and M.
 	Each letter is representing its own value irrespective of its position in the number.
 	The Roman number system is called an addition system because the letters/digits are being added or subtracted from each other to create a specific number.
-	But it has no digit for the 'zero' so cannot represent it.
-	Another problem was computations with Roman numbers: It's not easy not multiply or subtract them properly.</p>
+	But it has no digit for the 'zero' so it cannot represent it.
+	Another problem was computations with Roman numbers: It's not easy to multiply or subtract them properly.</p>
 	<p>Today we commonly use the positional system.
 	In this system each digit changes its value depending on its position in the number.
-	The digits on the far right of the number have much lower value than the digits on the left.
+	The digits on the right have a lower value than the digits on the left.
 	There are existing an infinite amount of positional systems, distinguishable by its base.
 	The base, also called radix, decides about the amount of digits in that system.
 	For example the decimal system has a base of 10 and uses digits from 0 to 9.
@@ -102,8 +102,8 @@
 	The digits are 0 (zero) and 1 (one).
 	The binary system is being used in all modern electronic devices like your computer or your mobile phone
 	because it needs only two different states: on and off.
-	There are existing many different logical gates that are working in an integrated circuits like AND, OR and NOT, just to mention a few.
-	All numbers, integers as well as floating point numbers, are represented in your computer as a sequence of bits (A Bit is either 0 or 1).
+	There are existing many different logical gates that are working in integrated circuits like AND, OR and NOT, just to mention a few.
+	All numbers, integers as well as floating point numbers, are represented in your computer as a sequence of bits (A bit is either 0 or 1).
 	Eight Bits are grouped together into a byte, which can represent 2<sup>8</sup> = 256 different states.</p>
 	
 	<h3><a name="hex_system" href="#up">Hexadecimal system</a></h3>
@@ -112,7 +112,7 @@
 	The digits are 0 (zero), 1 (one), 2 (two), 3 (three), 4 (four), 5 (five), 6 (six), 7 (seven), 8 (eight), 9 (nine),
 	A (ten), B (eleven), C (twelve), D (thirteen), E (fourteen) and F (fifteen).
 	Each hexadecimal digit represents exactly 4 bits,
-	therefore the hexadecimal system can be used to display binary data in human-friendly way.
+	therefore the hexadecimal system can be used to display binary data in a human-friendly way.
 	Two hexadecimal digits represent exactly 1 byte (2&middot;4 bits = 8 bits = 1 byte),
 	therefore the hex system is also used to display memory addresses in the computer.
 	Hexadecimal numbers are often prefixed with 0x.</p>
@@ -135,7 +135,7 @@
 	
 	<p>The check method can be used to convert decimal numbers into binary numbers.
 	For each power of 2, beginning with a rather high one, we check whether it fits into the number.
-	If yes, we subtract it from the number and write append a 1 to our result, otherwise we append a 0 and go on with the next power of 2.</p>
+	If yes, we subtract it from the number and append a 1 to our result, otherwise we append a 0 and go on with the next power of 2.</p>
 	
 	<p>Example: We want to convert 310<sub>10</sub> into a binary number.</p>
 	
@@ -223,11 +223,13 @@
 	
 	<p><b>Result: 0.197265625<sub>10</sub> = 0.145<sub>8</sub></b></p>
 	
+	<p>You have to read the result from top to bottom.</p>
+	
 	<h3><a name="hex_4bit_method" href="#up">4-bit-block method for hex</a></h3>
 	
 	<p>This algorithm just uses the fact that every hexadecimal digit represents exactly 4 binary digits.
 	Therefore if you want to convert a binary number into a hexadecimal number then just group the digits
-	in blocks of 4 from the right and then replace each group with its corresponding hex digit.</p>
+	in blocks of 4, beginning from the right and then replace each group with its corresponding hex digit.</p>
 	
 	<p>Example: We want to convert 1111010110<sub>2</sub> into a hexadecimal number.</p>
 	
