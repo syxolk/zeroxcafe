@@ -15,7 +15,6 @@
     </string-array>
     
     <string name="title_activity_help">Hilfe</string>
-    <string name="help_icon_title">Logo von 0xCAFE</string>
     <string name="help_description">
         Mit 0xCAFE kannst du Zahlen von einer Basis in eine andere umrechnen.
         Die App bekam ihren Namen von Programmiersprachen wie C, bei denen Hex-Zahlen mit 0x beginnen.
@@ -23,5 +22,6 @@
     </string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
-
+	<string name="title_activity_wiki">Wiki</string>
+    
 </resources>
