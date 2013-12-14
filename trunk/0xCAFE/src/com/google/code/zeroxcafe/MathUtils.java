@@ -256,7 +256,8 @@ public class MathUtils {
 
 			if (decimalPoint != 0) {
 				BigInteger integerPart = number.toBigInteger();
-				result.append(integerPart.toString(base));
+				result.append(integerPart.toString(base).toUpperCase(
+						Locale.ENGLISH));
 				number = number.subtract(new BigDecimal(integerPart));
 			}
 
