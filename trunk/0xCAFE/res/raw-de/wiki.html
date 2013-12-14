@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+	<style type="text/css">
+		/* see http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/ */
+		sup, sub {
+			vertical-align: baseline;
+			position: relative;
+			top: -0.4em;
+		}
+		sub { top: 0.4em; }
+		
+		/* Up link in every header */
+		a[href="#up"]:after {
+			content: " \2191";
+		}
+		a[href="#up"] {
+			color: inherit;
+			text-decoration: inherit;
+		}
+		
+		/* Better reading */
+		body {
+			text-align: justify;
+			line-height: 150%;
+		}
+		
+		/* nice tables */
+		table {
+			border-collapse: collapse;
+		}
+		table td, table th {
+			padding-right: 10px;
+			padding-left: 10px;
+			padding-bottom: 5px;
+			text-align: left;
+		}
+		table th {
+			border-bottom: 2px solid lightblue;
+			color:darkblue;
+			margin:0;
+		}
+		table td {
+			border-bottom: 1px solid lightblue;
+		}
+	</style>
+</head>
+<body>
+	<h1><a name="up">0xCAFE Wiki</a></h1>
+	<h2>Inhaltsverzeichnis</h2>
+	<h3>
+	<ol>
+		<li><a href="#systems">Zeichensystem</a></li>
+		<ul>
+			<li><a href="#dec_system">Dezimalsystem (10)</a></li>
+			<li><a href="#bin_system">Binärsystem (2)</a></li>
+			<li><a href="#hex_system">Hexadezimalsystem (16)</a></li>
+			<li><a href="#oct_system">Oktalsystem (8)</a></li>
+		</ul>
+		<li><a href="#algorithms">Umwandlungsalghorithmen</a></li>
+		<ul>
+			<li><a href="#check_method">Prüf-Methode</a></li>
+			<li><a href="#mod_method">Modulo-Methode</a></li>
+			<li><a href="#mult_method">Multiplizieren-Methode</a></li>
+			<li><a href="#hex_4bit_method">4-Bit-Block Methode für das Hex-System</a></li>
+			<li><a href="#oct_3bit_method">3-Bit-Block Methode für das Okt-System</a></li>
+		</ul>
+		<li><a href="#links">Weiterführende Links</a></li>
+	</ol>
+	</h3>
+	
+	<h2><a name="systems" href="#up">Zahlensysteme</a></h2>
+	
+	<p>Im Laufe der Geschichte der Menschheit wurden verschiedene Repräsentationen von Zahlen verwendet.
+	Die Römer zum Beispiel verwendeten ihr eigenes System bestehend aus den Zeichen I, V, X, L, C, D und M.
+	Jedes Zeichen repräsentiert seinen eigenen Wert, unabhängig von der Position in der Zahl.
+	Das Römische Zahlensystem wird auch Additionssystem genannt, weil die Zifferen/Buchstaben miteinander addiert oder subtrahiert werden um eine spezifische Zahl zu repräsentieren.
+	Allerdings hat das römische System kein Zeichen für die Null, weshalb es diese auch nicht darstellen kann.
+	Ein anderes Problem ist das Rechnen mit römischen Zahlen: Es ist nicht wirklich einfach sie zu addieren oder zu multiplizieren.</p>
+	<p>Heute nutzen wir meist das Stellenwertsystem.
+	In diesem System ändert jede Ziffer ihren Wert abhängig von ihrer Position in der Zahl.
+	Die Ziffern rechts haben einen niedrigeren Stellenwert als die Ziffern links.
+	Die verschiedenen Stellenwertsystem werden durch ihre sogenannte Basis unterschieden.
+	Die Basis bestimmt die Anzahl an Ziffern in diesem System.
+	Zum Beispiel verwendet das Dezimalsystem die Basis und benutzt daher die Ziffern 0 bis 9.
+	Jede Ziffer mit der Basis hoch dem Stellenwert multipliziert, wobei der Stellenwert von rechts mit 0 beginnend gezählt wird.
+	So ist zum Beispiel die Zahl 256 gleich 2&middot;10<sup>2</sup> + 5&middot;10<sup>1</sup> + 6&middot;10<sup>0</sup></p>
+	
+	<h3><a name="dec_system" href="#up">Dezimalsystem</a></h3>
+	
+	<p>Das Dezimalsystem ist ein Stellenwertsystem mit der Basis 10.
+	Die Ziffern sind 0 (null), 1 (eins), 2 (zwei), 3 (drei), 4 (vier), 5 (fünf), 6 (sechs), 7 (sieben), 8 (acht) und 9 (neun).
+	Das Dezimalsystem ist das meistverwendete Zahlensystem in modernen Zivilisationen.
+	Wahrscheinlich ist es deshalb so populär geworden, weil die Menschen gelernt haben mit ihren 10 Fingern zu zählen.
+	Das Dezimalsystem wird nicht nur für Ganzzahlen, sondern auch für Gleitkomma-Zahlen verwendet.
+	Dafür wird der sogenannte Dezimalpunkt (im deutschen Sprachraum Dezimalkomma) genutzt, der die positiven Exponenten von den negativen trennt.
+	Beispiel: Die Zahl 12,45 ist gleich 1&middot;10<sup>1</sup> + 2&middot;10<sup>0</sup> + 4&middot;10<sup>-1</sup> + 5&middot;10<sup>-2</sup> </p>
+	
+	<h3><a name="bin_system" href="#up">Binärsystem</a></h3>
+	
+	<p>Das Binärsystem ist ein Stellenwertsystem mit der Basis 2.
+	Die Ziffern sind 0 (null) und 1 (eins).
+	Das Binärsystem wird in allen modernen elektronischen Geräten wie deinem Fernseher oder deinem Smartphone verwendet,
+	da es nur zwei verschiedene Zustände braucht: an und aus.
+	Systeme mit 2 Zuständen finden in logischen Schaltgattern wie UND, ODER und NICHT Anwendung.
+	Alle Zahlen, ganze Zahlen wie rationale, werden im Computer als eine Folge von Bits dargestellt, wobei ein Bit entweder den Zustand 0 oder 1 hat.
+	Acht Bits werden zusammengefasst zu einem Byte, welches somit 2<sup>8</sup> = 256 verschiedene Zustände kennt.</p>
+	
+	<h3><a name="hex_system" href="#up">Hexadezimalsystem</a></h3>
+	
+	<p>Das Hexadezimalsystem ist ein Stellenwertsystem mit der Basis 16.
+	Die Ziffern sind 0 (null), 1 (eins), 2 (zwei), 3 (drei), 4 (vier), 5 (fünf), 6 (sechs), 7 (sieben), 8 (acht), 9 (neun),
+	A (zehn), B (elf), C (zwölf), D (dreizehn), E (vierzehn) und F (fünfzehn).
+	Jede hexadezimale Ziffer repräsentiert exakt 4 Bit,
+	weshalb das hexadezimale System oft auch zur Darstellung von Binärdaten in einem menschenlesbaren Format benutzt wird.
+	Zwei hexadezimale Ziffern repräsentieren exakt ein Byte (2&middot;4 bits = 8 bits = 1 byte),
+	weshalb das hexadezimale System oft auch zur Darstellung von Speicheradressen verwendet wird.
+	Hexadezimale Zahlen werden in Programmiersprachen oft mit 0x eingeleitet.</p>
+	
+	<h3><a name="oct_system" href="#up">Oktalsystem</a></h3>
+	
+	<p>Das Oktalsystem ist ein Stellenwertsystem mit der Basis 8.
+	Die Ziffern sind 0 (null), 1 (eins), 2 (zwei), 3 (drei), 4 (vier), 5 (fünf), 6 (sechs) und 7 (sieben).
+	Jede oktale Ziffer repräsentiert exakt 3 Bits,
+	weshalb das Oktalsystem in Maschinen mit 12-, 24- und 36-Bit Wortbreite verwendet wurde.
+	Oktale Ziffern werden in Programmiersprachen oft mit 0 eingeleitet.</p>
+	
+	<h2><a name="algorithms" href="#up">Umwandlungsalgorithmen</a></h2>
+	
+	<p>Als Mathematiker oder Informatiker muss man oft zwischen verschiedenen Zahlensystemen umrechnen.
+	Das ist wahrscheinlich auch der Grund, warum du diese App nutzt.
+	Aber wenn du wissen möchtest, wie man diese Umwandlung selbst vornimmt, dann solltest du das folgende Kapitel lesen.</p>
+	
+	<h3><a name="check_method" href="#up">Prüf-Methode</a></h3>
+	
+	<p>Die Prüf-Methode wird dazu verwendet dezimale Zahlen in das Binärsystem umzurechnen.
+	Für jede Zweierpotenz, beginnend mit einer recht hohen, wird geprüft, ob diese in die Zahl reinpasst.
+	Wenn ja, dann ziehe die Zweierpotent von der Zahl ab und fügen eine 1 an das Ergebnis an, andernfalls hänge eine 0 an.
+	Fahre dann mit der nächst kleineren Potenz fort.</p>
+	
+	<p>Beispiel: Wir wollen die Zahl 310<sub>10</sub> in eine Binärzahl umwandeln.</p>
+	
+	<table>
+		<thead>
+		<tr><th>aktuelle Zahl</th><th>Zweierpotenz</th><th>Ergebnis</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>310</td><td>2<sup>9</sup> = 512 (passt nicht)</td><td>0</td></tr>
+		<tr><td>310</td><td>2<sup>8</sup> = 256 (passt)</td><td>1</td></tr>
+		<tr><td>310-256=54</td><td>2<sup>7</sup> = 128 (passt nicht)</td><td>0</td></tr>
+		<tr><td>54</td><td>2<sup>6</sup> = 64 (passt nicht)</td><td>0</td></tr>
+		<tr><td>54</td><td>2<sup>5</sup> = 32 (passt)</td><td>1</td></tr>
+		<tr><td>54-32=22</td><td>2<sup>4</sup> = 16 (passt)</td><td>1</td></tr>
+		<tr><td>22-16=6</td><td>2<sup>3</sup> = 8 (passt nicht)</td><td>0</td></tr>
+		<tr><td>6</td><td>2<sup>2</sup> = 4 (passt)</td><td>1</td></tr>
+		<tr><td>6-4=2</td><td>2<sup>1</sup> = 2 (passt)</td><td>1</td></tr>
+		<tr><td>2-2=0</td><td>2<sup>0</sup> = 1 (passt nicht)</td><td>0</td></tr>
+		</tbody>
+	</table>
+	
+	<p><b>Ergebnis: 310<sub>10</sub> = 100110110<sub>2</sub></b></p>
+	
+	<p>Das Ergebnis muss in der Tabelle von oben nach unten abgelesen werden.
+	Es ist wichtig, dass der Algorithmus bis 2<sup>0</sup> fortgesetzt wird,
+	selbst wenn die Zahl bereits null ist, andernfalls übergeht man einige Nullen am Ende.</p>
+	
+	<h3><a name="mod_method" href="#up">Modulo-Methode</a></h3>
+	
+	<p>Mit der Modulo-Methode lassen sich auch Dezimalzahlen in das Binärsystem umwandeln, aber auch in andere Zahlensysteme.
+	Diese Methode wird 'Modulo-Methode' genannt, da sie die Ganzzahl-Divison und den Modulo-Operator verwendet.
+	Der Algorithmus arbeitet so: Teile die aktuelle Zahl durch 2 (oder die Basis des Zielsystems) und nimm den Rest der Division als Ergebnis.
+	Die neue Zahl ist dann das Ergebnis der Ganzzahl-Division. Der Algorithmus terminiert, wenn die aktuelle Zahl gleich Null ist.</p>
+	
+	<p>Beispiel: Wir wollen die Zahl 310<sub>10</sub> in das Binärsystem umwandeln.</p>
+	
+	<table>
+		<tr><th>aktuelle Zahl</th><th>Divison</th><th>Ergebnis</th></tr>
+		<tr><td>310</td><td>310 &divide; 2 = 155 R 0</td><td>0</td></tr>
+		<tr><td>155</td><td>155 &divide; 2 = 77 R 1</td><td>1</td></tr>
+		<tr><td>77</td><td>77 &divide; 2 = 38 R 1</td><td>1</td></tr>
+		<tr><td>38</td><td>38 &divide; 2 = 19 R 0</td><td>0</td></tr>
+		<tr><td>19</td><td>19 &divide; 2 = 9 R 1</td><td>1</td></tr>
+		<tr><td>9</td><td>9 &divide; 2 = 4 R 1</td><td>1</td></tr>
+		<tr><td>4</td><td>4 &divide; 2 = 2 R 0</td><td>0</td></tr>
+		<tr><td>2</td><td>2 &divide; 2 = 1 R 0</td><td>0</td></tr>
+		<tr><td>1</td><td>1 &divide; 2 = 0 R 1</td><td>1</td></tr>
+		<tr><td>0</td><td>-</td><td>-</td></tr>
+	</table>
+	
+	<p><b>Ergebnis: 310<sub>10</sub> =  100110110<sub>2</sub></b></p>
+	
+	<p>Das Ergebnis muss in der Tablle von unten nach oben gelesen werden.
+	Offensichtlich ist dieser Algorithmus wesentlich direkter und einfacher als die Prüf-Methode.
+	Der selbe Algorithmus kann auch zum Umwandeln einer Dezimalzahl in das Hexadezimalsystem benutzt werden.</p>
+	
+	<p>Beispiel: Wir wollen die Zahl 1980<sub>10</sub> in eine Hexadezimalzahl umwandeln.</p>
+	
+	<table>
+		<tr><th>aktuelle Zahl</th><th>Divison</th><th>Ergebnis</th></tr>
+		<tr><td>1980</td><td>1980 &divide; 16 = 123 R 12</td><td>12 = C</td></tr>
+		<tr><td>123</td><td>123 &divide; 16 = 7 R 11</td><td>11 = B</td></tr>
+		<tr><td>7</td><td>7 &divide; 16 = 0 R 7</td><td>7</td></tr>
+		<tr><td>0</td><td>-</td><td>-</td></tr>
+	</table>
+	
+	<p><b>Ergebnis: 1980<sub>10</sub> =  7BC<sub>16</sub></b></p>
+	
+	<h3><a name="mult_method" href="#up">Multiplizieren-Methode</a></h3>
+	
+	<p>Die Multiplizieren-Methode wird verwendet, um den Nachkommateil einer Dezimalzahl in ein anderes Zahlensystem umzuwandeln.
+	Damit ergänzt dieser Algorithmus die Modulo-Methode, die nur ganze Zahlen umwandeln kann.
+	Zum Algorithmus: Nimm den Nachkommateil, multipliziere ihn mit der Basis des Zielsystems und hänge die Zahlen links vom Dezimalpunkt an das Ergbnis an.
+	Die Ziffernfolge rechts vom Dezimalpunkt ist der neue Nachkommateil.</p>
+	
+	<p>Beispiel: Wir wollen 0.197265625<sub>10</sub> in das Oktalsystem umwandeln.</p>
+	
+	<table>
+		<tr><th>aktuelle Zahl</th><th>Multiplikation</th><th>Ergegbnis</th></tr>
+		<tr><td>0.197265625</td><td>0.197265625 &middot; 8 = 1.578125</td><td>1</td></tr>
+		<tr><td>0.578125</td><td>0.578125 &middot; 8 = 4.625</td><td>4</td></tr>
+		<tr><td>0.625</td><td>0.625 &middot; 8 = 5</td><td>5</td></tr>
+		<tr><td>0.0</td><td>-</td><td>-</td></tr>
+	</table>
+	
+	<p><b>Ergebnis: 0.197265625<sub>10</sub> = 0.145<sub>8</sub></b></p>
+	
+	<p>Das Ergebnis muss aus der Tabelle von oben nach unten gelesen werden.</p>
+	
+	<h3><a name="hex_4bit_method" href="#up">4-Bit-Block Methode für das Hex-System</a></h3>
+	
+	<p>Dieser Algorithmus nutzt den Umstand, dass jede hexadezimale Ziffer exakt 4 Binärziffern entspricht.
+	Deshalb kann man für die Umwandlung einer Binärzahl in eine hexadezimale einfach die Ziffern von rechts beginnend
+	in 4er-Blocks gruppieren und dann jeden Block durch die entsprechende Hex-Ziffer ersetzen.</p>
+	
+	<p>Beispiel: Wir wollen 1111010110<sub>2</sub> in eine Hexadezimalzahl umwandeln.</p>
+	
+	<table>
+		<tr><td>11</td><td>1101</td><td>0110</td></tr>
+		<tr><td>3</td><td>D</td><td>6</td></tr>
+	</table>
+	
+	<p><b>Ergebnis: 1111010110<sub>2</sub> = 3D6<sub>16</sub></b></p>
+	
+	<h3><a name="oct_3bit_method" href="#up">3-Bit-Block Methode für das Okt-System</a></h3>
+	
+	<p>Dieser Algorithmus ist ähnlich zum 3-Bit-Hex-Algorithmus, mit dem Unterschied, dass mit diesem
+	Binärzahlen in das Oktalsystem umgewandelt werden können.
+	Die Binärziffern müssen nun einfach in 3er-Blocks gruppiert
+	und dann durch die korrespondierende Oktalziffer ersetzt werden.</p>
+	
+	<p>Beispiel: Wir wollen 1111010110<sub>2</sub> in eine hexadezimale Zahl umwandeln.</p>
+	
+	<table>
+		<tr><td>1</td><td>111</td><td>010</td><td>110</td></tr>
+		<tr><td>1</td><td>7</td><td>2</td><td>6</td></tr>
+	</table>
+	
+	<p><b>Ergebnis: 1111010110<sub>2</sub> = 1726<sub>8</sub></b></p>
+	
+	<h2><a name="links" href="#up">Weiterführende Links</a></h2>
+	
+	<ul>
+		<li><a href="http://www.arndt-bruenner.de/mathe/scripts/Zahlensysteme.htm">Zahlensysteme (arndt-bruenner.de)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Zahlensystem">Zahlensystem (Wikipedia)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Stellenwertsystem">Stellenwertsystem (Wikipedia)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Dezimalsystem">Dezimalsystem (Wikipedia)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Dualsystem">Dualsystem (Wikipedia)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Hexadezimalsystem">Hexadezimalsystem (Wikipedia)</a></li>
+		<li><a href="http://de.wikipedia.org/wiki/Oktalsystem">Oktalsystem (Wikipedia)</a></li>
+	</ul>
+	
+</body>
+</html>
