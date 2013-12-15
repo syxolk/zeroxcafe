@@ -1,4 +1,4 @@
-package com.google.code.zeroxcafe;
+package com.googlecode.zeroxcafe;
 
 import android.app.Activity;
 import android.inputmethodservice.Keyboard;
@@ -14,6 +14,7 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import com.googlecode.zeroxcafe.R;
 
 /**
  * Custom keyboard helper class. The keybboard ist designed for typing numbers

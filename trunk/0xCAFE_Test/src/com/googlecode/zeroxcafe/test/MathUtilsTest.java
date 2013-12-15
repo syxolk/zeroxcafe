@@ -1,12 +1,12 @@
-package com.google.code.zeroxcafe.test;
+package com.googlecode.zeroxcafe.test;
 
-import static com.google.code.zeroxcafe.MathUtils.convert;
-import static com.google.code.zeroxcafe.MathUtils.hasMaximumOneDecimalPoint;
-import static com.google.code.zeroxcafe.MathUtils.isCompatible;
+import static com.googlecode.zeroxcafe.MathUtils.convert;
+import static com.googlecode.zeroxcafe.MathUtils.hasMaximumOneDecimalPoint;
+import static com.googlecode.zeroxcafe.MathUtils.isCompatible;
 import junit.framework.TestCase;
 
 /**
- * TestCases for {@link com.google.code.zeroxcafe.MathUtils}.
+ * TestCases for {@link com.googlecode.zeroxcafe.MathUtils}.
  * 
  * @author Hans
  */
