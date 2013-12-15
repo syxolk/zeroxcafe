@@ -1,4 +1,4 @@
-package com.google.code.zeroxcafe;
+package com.googlecode.zeroxcafe;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import com.googlecode.zeroxcafe.R;
 
 /**
  * Simple activity with help and about text

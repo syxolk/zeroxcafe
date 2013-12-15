@@ -1,8 +1,7 @@
-package com.google.code.zeroxcafe;
+package com.googlecode.zeroxcafe;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -11,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import com.googlecode.zeroxcafe.R;
 
 /**
  * Activity that shows the wiki HTML page. It uses an

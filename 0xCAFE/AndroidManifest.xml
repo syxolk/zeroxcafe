@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.code.zeroxcafe"
+    package="com.googlecode.zeroxcafe"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.google.code.zeroxcafe.MainActivity"
+            android:name="com.googlecode.zeroxcafe.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,20 +23,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.google.code.zeroxcafe.HelpActivity"
+            android:name="com.googlecode.zeroxcafe.HelpActivity"
             android:label="@string/title_activity_help"
-            android:parentActivityName="com.google.code.zeroxcafe.MainActivity" >
+            android:parentActivityName="com.googlecode.zeroxcafe.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.google.code.zeroxcafe.MainActivity" />
+                android:value="com.googlecode.zeroxcafe.MainActivity" />
         </activity>
         <activity
-            android:name="com.google.code.zeroxcafe.WikiActivity"
+            android:name="com.googlecode.zeroxcafe.WikiActivity"
             android:label="@string/title_activity_wiki"
-            android:parentActivityName="com.google.code.zeroxcafe.MainActivity" >
+            android:parentActivityName="com.googlecode.zeroxcafe.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.google.code.zeroxcafe.MainActivity" />
+                android:value="com.googlecode.zeroxcafe.MainActivity" />
         </activity>
     </application>
 

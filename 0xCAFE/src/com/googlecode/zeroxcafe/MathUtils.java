@@ -1,4 +1,4 @@
-package com.google.code.zeroxcafe;
+package com.googlecode.zeroxcafe;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
