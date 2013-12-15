@@ -19,7 +19,7 @@ public class MathUtils {
 	 * Maximum number of loops to go through when converting a decimal number
 	 * into a number of another radix. Otherwise there will be an infinity loop.
 	 */
-	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 100;
+	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 200;
 
 	/**
 	 * This character is used in a converted number to show that all digits
