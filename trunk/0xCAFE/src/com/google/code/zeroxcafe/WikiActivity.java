@@ -1,7 +1,6 @@
 package com.google.code.zeroxcafe;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import android.annotation.TargetApi;
@@ -52,7 +51,7 @@ public class WikiActivity extends Activity {
 					text.append(line);
 					text.append('\n');
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				text.append(e.toString());
 			}
 
