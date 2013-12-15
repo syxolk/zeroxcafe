@@ -1289,7 +1289,7 @@ android.support.v4.widget.ViewDragHelper$Callback -> android.support.v4.widget.a
     boolean tryCaptureView(android.view.View,int) -> a
     int clampViewPositionHorizontal(android.view.View,int,int) -> a
     int clampViewPositionVertical(android.view.View,int,int) -> b
-com.google.code.zeroxcafe.CustomKeyboard -> com.google.code.zeroxcafe.a:
+com.googlecode.zeroxcafe.CustomKeyboard -> com.googlecode.zeroxcafe.a:
     android.app.Activity activity -> a
     android.inputmethodservice.KeyboardView mKeyboardView -> b
     android.inputmethodservice.KeyboardView$OnKeyboardActionListener mOnKeyboardActionListener -> c
@@ -1297,9 +1297,9 @@ com.google.code.zeroxcafe.CustomKeyboard -> com.google.code.zeroxcafe.a:
     void showCustomKeyboard(android.view.View) -> a
     boolean isCustomKeyboardVisible() -> b
     void registerEditText(int) -> a
-    android.app.Activity access$0(com.google.code.zeroxcafe.CustomKeyboard) -> a
-com.google.code.zeroxcafe.CustomKeyboard$1 -> com.google.code.zeroxcafe.b:
-    com.google.code.zeroxcafe.CustomKeyboard this$0 -> a
+    android.app.Activity access$0(com.googlecode.zeroxcafe.CustomKeyboard) -> a
+com.googlecode.zeroxcafe.CustomKeyboard$1 -> com.googlecode.zeroxcafe.b:
+    com.googlecode.zeroxcafe.CustomKeyboard this$0 -> a
     void onPress(int) -> onPress
     void onRelease(int) -> onRelease
     void onKey(int,int[]) -> onKey
@@ -1308,21 +1308,21 @@ com.google.code.zeroxcafe.CustomKeyboard$1 -> com.google.code.zeroxcafe.b:
     void swipeRight() -> swipeRight
     void swipeDown() -> swipeDown
     void swipeUp() -> swipeUp
-com.google.code.zeroxcafe.CustomKeyboard$2 -> com.google.code.zeroxcafe.c:
-    com.google.code.zeroxcafe.CustomKeyboard this$0 -> a
+com.googlecode.zeroxcafe.CustomKeyboard$2 -> com.googlecode.zeroxcafe.c:
+    com.googlecode.zeroxcafe.CustomKeyboard this$0 -> a
     void onFocusChange(android.view.View,boolean) -> onFocusChange
-com.google.code.zeroxcafe.CustomKeyboard$3 -> com.google.code.zeroxcafe.d:
-    com.google.code.zeroxcafe.CustomKeyboard this$0 -> a
+com.googlecode.zeroxcafe.CustomKeyboard$3 -> com.googlecode.zeroxcafe.d:
+    com.googlecode.zeroxcafe.CustomKeyboard this$0 -> a
     void onClick(android.view.View) -> onClick
-com.google.code.zeroxcafe.CustomKeyboard$4 -> com.google.code.zeroxcafe.e:
-    com.google.code.zeroxcafe.CustomKeyboard this$0 -> a
+com.googlecode.zeroxcafe.CustomKeyboard$4 -> com.googlecode.zeroxcafe.e:
+    com.googlecode.zeroxcafe.CustomKeyboard this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.google.code.zeroxcafe.HelpActivity -> com.google.code.zeroxcafe.HelpActivity:
+com.googlecode.zeroxcafe.HelpActivity -> com.googlecode.zeroxcafe.HelpActivity:
     void onCreate(android.os.Bundle) -> onCreate
     void setupActionBar() -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-com.google.code.zeroxcafe.MainActivity -> com.google.code.zeroxcafe.MainActivity:
-    com.google.code.zeroxcafe.CustomKeyboard mCustomKeyboard -> a
+com.googlecode.zeroxcafe.MainActivity -> com.googlecode.zeroxcafe.MainActivity:
+    com.googlecode.zeroxcafe.CustomKeyboard mCustomKeyboard -> a
     android.widget.TextView outputView -> b
     void onCreate(android.os.Bundle) -> onCreate
     void initSpinner(android.widget.Spinner) -> a
@@ -1333,17 +1333,17 @@ com.google.code.zeroxcafe.MainActivity -> com.google.code.zeroxcafe.MainActivity
     int getBaseByPos(int) -> b
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void onBackPressed() -> onBackPressed
-    void access$0(com.google.code.zeroxcafe.MainActivity) -> a
-com.google.code.zeroxcafe.MainActivity$1 -> com.google.code.zeroxcafe.f:
-    com.google.code.zeroxcafe.MainActivity this$0 -> a
+    void access$0(com.googlecode.zeroxcafe.MainActivity) -> a
+com.googlecode.zeroxcafe.MainActivity$1 -> com.googlecode.zeroxcafe.f:
+    com.googlecode.zeroxcafe.MainActivity this$0 -> a
     void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
     void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
     void afterTextChanged(android.text.Editable) -> afterTextChanged
-com.google.code.zeroxcafe.MainActivity$2 -> com.google.code.zeroxcafe.g:
-    com.google.code.zeroxcafe.MainActivity this$0 -> a
+com.googlecode.zeroxcafe.MainActivity$2 -> com.googlecode.zeroxcafe.g:
+    com.googlecode.zeroxcafe.MainActivity this$0 -> a
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
     void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
-com.google.code.zeroxcafe.MathUtils -> com.google.code.zeroxcafe.h:
+com.googlecode.zeroxcafe.MathUtils -> com.googlecode.zeroxcafe.h:
     java.util.regex.Pattern REMOVE_LEADING_ZEROES -> a
     java.util.regex.Pattern REMOVE_TRAILING_ZEROES -> b
     boolean isCompatible(java.lang.String,int) -> a
@@ -1355,14 +1355,14 @@ com.google.code.zeroxcafe.MathUtils -> com.google.code.zeroxcafe.h:
     java.math.BigDecimal convertToDecimal(java.lang.String,int) -> b
     java.lang.String convertFromDecimal(java.math.BigDecimal,int) -> a
     java.lang.String format(java.lang.String) -> b
-com.google.code.zeroxcafe.WikiActivity -> com.google.code.zeroxcafe.WikiActivity:
+com.googlecode.zeroxcafe.WikiActivity -> com.googlecode.zeroxcafe.WikiActivity:
     android.webkit.WebView webView -> a
     void onCreate(android.os.Bundle) -> onCreate
     void setupActionBar() -> a
     boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
-    android.webkit.WebView access$0(com.google.code.zeroxcafe.WikiActivity) -> a
-com.google.code.zeroxcafe.WikiActivity$HtmlLoaderTask -> com.google.code.zeroxcafe.i:
-    com.google.code.zeroxcafe.WikiActivity this$0 -> a
+    android.webkit.WebView access$0(com.googlecode.zeroxcafe.WikiActivity) -> a
+com.googlecode.zeroxcafe.WikiActivity$HtmlLoaderTask -> com.googlecode.zeroxcafe.i:
+    com.googlecode.zeroxcafe.WikiActivity this$0 -> a
     java.lang.String doInBackground(java.lang.Void[]) -> a
     void onPostExecute(java.lang.String) -> a
     void onPostExecute(java.lang.Object) -> onPostExecute
