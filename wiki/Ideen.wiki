@@ -12,8 +12,9 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * beliebe Basen sollen auswählbar sein
   * Einstellung, ob Buchstaben in Hex-Werten groß oder klein geschrieben werden sollen
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
-  * Automatische Erkennung von Perioden nach dem Trennpunkt
+  * Dialog mit Spinnern zur Auswahl der Ein- und Ausgabe-Basis.
 
 = Erledigt =
 
   * Anleitung zur händischen Umrechnung von Zahlen zw. verschiedenen Basen mit Prüf-Methode, Modulo-Methode und 4-Bit-to-Hex-Methode.
+  * Automatische Erkennung von Perioden nach dem Trennpunkt
