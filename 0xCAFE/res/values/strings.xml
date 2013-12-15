@@ -4,6 +4,7 @@
     <string name="app_name">0xCAFE</string>
     <string name="description">Convert a number from one radix into another.</string>
     <string name="input_hint">Enter a number</string>
+    <string name="output_empty">-</string>
     <string name="output_error_incompatible">Incompatible number.</string>
     <string name="output_error_too_much_decimal_points">Number has more than one decimal point.</string>
 

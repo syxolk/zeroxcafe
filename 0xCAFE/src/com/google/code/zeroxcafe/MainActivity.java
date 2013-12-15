@@ -23,12 +23,15 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	CustomKeyboard mCustomKeyboard;
+	private TextView outputView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		outputView=(TextView)findViewById(R.id.outputText);
+		
 		initSpinner((Spinner) findViewById(R.id.inputType));
 		initSpinner((Spinner) findViewById(R.id.outputType));
 
@@ -77,6 +80,14 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	private void setOutput(String text) {
+		outputView.setText(text);
+	}
+	
+	private void setOutput(int resId) {
+		setOutput(getString(resId));
+	}
+	
 	/**
 	 * This method is being called if the input number or other parameters
 	 * change.
@@ -85,13 +96,12 @@ public class MainActivity extends Activity {
 		Spinner inputSpinner = (Spinner) findViewById(R.id.inputType);
 		Spinner outputSpinner = (Spinner) findViewById(R.id.outputType);
 		EditText inputEdit = (EditText) findViewById(R.id.inputText);
-		TextView outputEdit = (TextView) findViewById(R.id.outputText);
 
 		if (inputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
 				|| outputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
 				|| inputEdit.length() == 0) {
 
-			outputEdit.setText("-");
+			setOutput(R.string.output_empty);
 
 		} else {
 			int baseFrom = getBaseByPos(inputSpinner.getSelectedItemPosition());
@@ -103,12 +113,11 @@ public class MainActivity extends Activity {
 
 			if (compatible && maximum1DP) {
 				String output = MathUtils.convert(input, baseFrom, baseTo);
-				outputEdit.setText(output);
+				setOutput(MathUtils.format(output));
 			} else if (!compatible) {
-				outputEdit.setText(R.string.output_error_incompatible);
+				setOutput(R.string.output_error_incompatible);
 			} else if (!maximum1DP) {
-				outputEdit
-						.setText(R.string.output_error_too_much_decimal_points);
+				setOutput(R.string.output_error_too_much_decimal_points);
 			}
 		}
 	}
