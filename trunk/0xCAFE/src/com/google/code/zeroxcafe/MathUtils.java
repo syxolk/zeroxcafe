@@ -2,6 +2,8 @@ package com.google.code.zeroxcafe;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -18,6 +20,12 @@ public class MathUtils {
 	 * into a number of another radix. Otherwise there will be an infinity loop.
 	 */
 	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 100;
+
+	/**
+	 * This character is used in a converted number to show that all digits
+	 * after it are the periodical fraction.
+	 */
+	public static final char PERIODICAL_FRACTION_INDICATOR = '|';
 
 	/**
 	 * This class always uses the american decimal point for its parsing and
@@ -264,17 +272,33 @@ public class MathUtils {
 			result.append(DECIMAL_POINT);
 
 			int counter = 0;
+			StringBuilder fractionalResult = new StringBuilder();
+			List<BigDecimal> fractionalPartList = new ArrayList<BigDecimal>();
 
 			while (number.compareTo(BigDecimal.ZERO) > 0
 					&& counter < CONVERT_FROM_DECIMAL_MAX_LOOPS) {
+
+				int fractionalPartListIndex = fractionalPartList
+						.indexOf(number);
+
+				if (fractionalPartListIndex != -1) {
+					fractionalResult.insert(fractionalPartListIndex,
+							PERIODICAL_FRACTION_INDICATOR);
+					break;
+				}
+
+				fractionalPartList.add(number);
+
 				number = number.multiply(new BigDecimal(base));
 				BigInteger integerPart = number.toBigInteger();
-				result.append(integerPart.toString(base).toUpperCase(
+				fractionalResult.append(integerPart.toString(base).toUpperCase(
 						Locale.ENGLISH));
 				number = number.subtract(new BigDecimal(integerPart));
 
 				counter++;
 			}
+
+			result.append(fractionalResult);
 
 		} else {
 
@@ -285,5 +309,22 @@ public class MathUtils {
 		String res = trimNumber(result.toString());
 
 		return res;
+	}
+
+	/**
+	 * Formats a converted number. Currently this method just replaces the
+	 * PERIODICAL_FRACTION_INDICATOR with an overline character.
+	 * 
+	 * @param number
+	 *            converted number
+	 * @return formatted number
+	 */
+	public static String format(String number) {
+		if (number.indexOf(PERIODICAL_FRACTION_INDICATOR) != -1) {
+			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
+			number = number.replace('|', '\u203E');
+		}
+
+		return number;
 	}
 }
