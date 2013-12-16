@@ -13,6 +13,8 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Einstellung, ob Buchstaben in Hex-Werten groß oder klein geschrieben werden sollen
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
   * Dialog mit Spinnern zur Auswahl der Ein- und Ausgabe-Basis.
+  * Auf Android 2.3.3 wird der Überstrich (Periode) nicht angezeigt.
+  * Hilfe: Erklärung, was der Überstrich macht, hinzufügen.
 
 = Erledigt =
 
