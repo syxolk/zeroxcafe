@@ -66,15 +66,50 @@ public class MathUtilsTest extends TestCase {
 		assertEquals("1234.5", convert("1234.5", 8, 8));
 		assertEquals("668.625", convert("1234.5", 8, 10));
 		assertEquals("29C.A", convert("1234.5", 8, 16));
-		
+
 		assertEquals("10011010010.1", convert("1234.5", 10, 2));
 		assertEquals("2322.4", convert("1234.5", 10, 8));
 		assertEquals("1234.5", convert("1234.5", 10, 10));
 		assertEquals("4D2.8", convert("1234.5", 10, 16));
-		
-		assertEquals("10100001001000110100.01011011", convert("A1234.5B", 16, 2));
+
+		assertEquals("10100001001000110100.01011011",
+				convert("A1234.5B", 16, 2));
 		assertEquals("2411064.266", convert("A1234.5B", 16, 8));
 		assertEquals("660020.35546875", convert("A1234.5B", 16, 10));
 		assertEquals("A1234.5B", convert("A1234.5B", 16, 16));
+	}
+
+	public void testConvertWithDecimalPeriodical() {
+		assertEquals("1.0|0011", convert("1.1", 10, 2));
+		assertEquals("1.0|6314", convert("1.1", 10, 8));
+		assertEquals("1.1|9", convert("1.1", 10, 16));
+		
+		assertEquals("1.|0011", convert("1.2", 10, 2));
+		assertEquals("1.|1463", convert("1.2", 10, 8));
+		assertEquals("1.|3", convert("1.2", 10, 16));
+		
+		assertEquals("1.0|1001", convert("1.3", 10, 2));
+		assertEquals("1.2|3146", convert("1.3", 10, 8));
+		assertEquals("1.4|C", convert("1.3", 10, 16));
+		
+		assertEquals("1.|0110", convert("1.4", 10, 2));
+		assertEquals("1.|3146", convert("1.4", 10, 8));
+		assertEquals("1.|6", convert("1.4", 10, 16));
+		
+		assertEquals("1.|1001", convert("1.6", 10, 2));
+		assertEquals("1.|4631", convert("1.6", 10, 8));
+		assertEquals("1.|9", convert("1.6", 10, 16));
+		
+		assertEquals("1.1|0110", convert("1.7", 10, 2));
+		assertEquals("1.5|4631", convert("1.7", 10, 8));
+		assertEquals("1.B|3", convert("1.7", 10, 16));
+		
+		assertEquals("1.|1100", convert("1.8", 10, 2));
+		assertEquals("1.|6314", convert("1.8", 10, 8));
+		assertEquals("1.|C", convert("1.8", 10, 16));
+		
+		assertEquals("1.1|1100", convert("1.9", 10, 2));
+		assertEquals("1.7|1463", convert("1.9", 10, 8));
+		assertEquals("1.E|6", convert("1.9", 10, 16));
 	}
 }
