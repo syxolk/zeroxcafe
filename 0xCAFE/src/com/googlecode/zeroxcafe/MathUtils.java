@@ -13,7 +13,13 @@ import java.util.regex.Pattern;
  * 
  * @author Hans
  */
-public class MathUtils {
+public final class MathUtils {
+
+	/**
+	 * Private constructor. No content.
+	 */
+	private MathUtils() {
+	}
 
 	/**
 	 * Maximum number of loops to go through when converting a decimal number
@@ -140,6 +146,10 @@ public class MathUtils {
 	 *            source radix
 	 * @param radixTo
 	 *            target radix
+	 * @throws NullPointerException
+	 *             if number is null
+	 * @throws IllegalArgumentException
+	 *             if radixFrom or radixTo is out of range
 	 * @return number in the target radix as a string
 	 */
 	public static String convert(String number, int radixFrom, int radixTo) {
@@ -188,14 +198,17 @@ public class MathUtils {
 		// remove trailing zeroes
 		number = REMOVE_LEADING_ZEROES.matcher(number).replaceFirst("");
 
-		if (hasDecimalPoint(number)) {
+		if (hasDecimalPoint(number)
+				&& number.indexOf(PERIODICAL_FRACTION_INDICATOR) == -1) {
 			// remove trailing zeroes
 			number = REMOVE_TRAILING_ZEROES.matcher(number).replaceFirst("");
-			// remove decimal point if there are no decimal digits
-			if (number.charAt(number.length() - 1) == DECIMAL_POINT) {
-				number = number.substring(0, number.length() - 1);
-			}
 		}
+		// remove decimal point if there are no decimal digits
+		if (number.length() > 0
+				&& number.charAt(number.length() - 1) == DECIMAL_POINT) {
+			number = number.substring(0, number.length() - 1);
+		}
+		// if number empty then just a zero
 		if (number.length() == 0) {
 			number = "0";
 		}
@@ -247,12 +260,12 @@ public class MathUtils {
 	 * 
 	 * @param number
 	 *            decimal number
-	 * @param base
+	 * @param radix
 	 *            target radix
 	 * @return converted number in target radix
 	 */
-	private static String convertFromDecimal(BigDecimal number, int base) {
-		if (base == 10)
+	private static String convertFromDecimal(BigDecimal number, int radix) {
+		if (radix == 10)
 			return trimNumber(number.toPlainString());
 
 		StringBuilder result = new StringBuilder();
@@ -264,7 +277,7 @@ public class MathUtils {
 
 			if (decimalPoint != 0) {
 				BigInteger integerPart = number.toBigInteger();
-				result.append(integerPart.toString(base).toUpperCase(
+				result.append(integerPart.toString(radix).toUpperCase(
 						Locale.ENGLISH));
 				number = number.subtract(new BigDecimal(integerPart));
 			}
@@ -289,10 +302,10 @@ public class MathUtils {
 
 				fractionalPartList.add(number);
 
-				number = number.multiply(new BigDecimal(base));
+				number = number.multiply(new BigDecimal(radix));
 				BigInteger integerPart = number.toBigInteger();
-				fractionalResult.append(integerPart.toString(base).toUpperCase(
-						Locale.ENGLISH));
+				fractionalResult.append(integerPart.toString(radix)
+						.toUpperCase(Locale.ENGLISH));
 				number = number.subtract(new BigDecimal(integerPart));
 
 				counter++;
@@ -302,7 +315,7 @@ public class MathUtils {
 
 		} else {
 
-			result.append(number.toBigInteger().toString(base));
+			result.append(number.toBigInteger().toString(radix));
 
 		}
 
@@ -317,9 +330,14 @@ public class MathUtils {
 	 * 
 	 * @param number
 	 *            converted number
+	 * @throws NullPointerException
+	 *             if number is null
 	 * @return formatted number
 	 */
 	public static String format(String number) {
+		if (number == null)
+			throw new NullPointerException("number is null");
+
 		if (number.indexOf(PERIODICAL_FRACTION_INDICATOR) != -1) {
 			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
 			number = number.replace('|', '\u203E');
