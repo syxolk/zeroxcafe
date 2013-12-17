@@ -23,5 +23,8 @@
     <string name="help_developers">Developed by Bitfröst Studios</string>
     <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
     <string name="title_activity_wiki">Wiki</string>
+    <string name="copy_result">Copy result to clipboard</string>
+    <string name="copy_result_success">Result was successfully copied to clipboard.</string>
+    <string name="copy_result_error">Failed to copy the result to the clipboard.</string>
 
 </resources>

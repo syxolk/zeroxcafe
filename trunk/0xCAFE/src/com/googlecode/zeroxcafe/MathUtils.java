@@ -340,7 +340,7 @@ public final class MathUtils {
 
 		if (number.indexOf(PERIODICAL_FRACTION_INDICATOR) != -1) {
 			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
-			number = number.replace('|', '\u203E');
+			number = number.replace('|', '\u00AF');
 		}
 
 		return number;

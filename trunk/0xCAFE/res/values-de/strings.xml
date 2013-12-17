@@ -24,5 +24,8 @@
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
 	<string name="title_activity_wiki">Wiki</string>
+	<string name="copy_result">Ergebnis in die Zwischenablage kopieren</string>
+	<string name="copy_result_success">Ergebnis wurde erfolgreich in die Zwischenablage kopiert!</string>
+	<string name="copy_result_error">Beim Kopieren in die Zwischenablage trat ein Fehler auf!</string>
     
 </resources>
