@@ -1,7 +1,12 @@
 package com.googlecode.zeroxcafe;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.googlecode.zeroxcafe.R;
+import android.widget.Toast;
 
 /**
  * Main-activity of the app.
@@ -31,8 +36,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		outputView=(TextView)findViewById(R.id.outputText);
-		
+		outputView = (TextView) findViewById(R.id.outputText);
+
 		initSpinner((Spinner) findViewById(R.id.inputType));
 		initSpinner((Spinner) findViewById(R.id.outputType));
 
@@ -84,11 +89,11 @@ public class MainActivity extends Activity {
 	private void setOutput(String text) {
 		outputView.setText(text);
 	}
-	
+
 	private void setOutput(int resId) {
 		setOutput(getString(resId));
 	}
-	
+
 	/**
 	 * This method is being called if the input number or other parameters
 	 * change.
@@ -141,6 +146,9 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
+		case R.id.action_copy_result:
+			copyResultToClipboard();
+			return true;
 		case R.id.action_help:
 			startActivity(new Intent(this, HelpActivity.class));
 			return true;
@@ -150,6 +158,47 @@ public class MainActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	/**
+	 * Copies the current result of the calculation to the clipboard.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void copyResultToClipboard() {
+		CharSequence text = outputView.getText();
+
+		try {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+				ClipData clip = ClipData.newPlainText("0xCAFE result", text);
+				clipboard.setPrimaryClip(clip);
+			} else {
+				copyResultToClipboardOldDevices(text);
+			}
+
+			Toast toast = Toast
+					.makeText(this, getString(R.string.copy_result_success),
+							Toast.LENGTH_SHORT);
+			toast.show();
+		} catch (Exception e) {
+			Toast toast = Toast.makeText(this,
+					getString(R.string.copy_result_error), Toast.LENGTH_LONG);
+			toast.show();
+		}
+	}
+
+	/**
+	 * Older clipboard API call. <a href=
+	 * "http://stackoverflow.com/questions/6624763/android-copy-to-clipboard-selected-text-from-a-textview"
+	 * >description for older/newer device API</a>
+	 * 
+	 * @param text
+	 *            text to copy
+	 */
+	@SuppressWarnings("deprecation")
+	private void copyResultToClipboardOldDevices(CharSequence text) {
+		android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+		clipboard.setText(text);
 	}
 
 	@Override
