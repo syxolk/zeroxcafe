@@ -22,7 +22,12 @@ public class MathUtilsTest extends TestCase {
 	public void testHasMaximumOneDecimalPoint() {
 		assertTrue(hasMaximumOneDecimalPoint("123.1"));
 		assertTrue(hasMaximumOneDecimalPoint("AB.C"));
+		assertTrue(hasMaximumOneDecimalPoint(".1234"));
+		assertTrue(hasMaximumOneDecimalPoint("1234."));
+		assertTrue(hasMaximumOneDecimalPoint("1234"));
+
 		assertFalse(hasMaximumOneDecimalPoint("AB..C"));
+		assertFalse(hasMaximumOneDecimalPoint("A.B.C"));
 		assertFalse(hasMaximumOneDecimalPoint("ABC.."));
 		assertFalse(hasMaximumOneDecimalPoint("..ABC"));
 		assertFalse(hasMaximumOneDecimalPoint(".ABC."));
@@ -83,31 +88,31 @@ public class MathUtilsTest extends TestCase {
 		assertEquals("1.0|0011", convert("1.1", 10, 2));
 		assertEquals("1.0|6314", convert("1.1", 10, 8));
 		assertEquals("1.1|9", convert("1.1", 10, 16));
-		
+
 		assertEquals("1.|0011", convert("1.2", 10, 2));
 		assertEquals("1.|1463", convert("1.2", 10, 8));
 		assertEquals("1.|3", convert("1.2", 10, 16));
-		
+
 		assertEquals("1.0|1001", convert("1.3", 10, 2));
 		assertEquals("1.2|3146", convert("1.3", 10, 8));
 		assertEquals("1.4|C", convert("1.3", 10, 16));
-		
+
 		assertEquals("1.|0110", convert("1.4", 10, 2));
 		assertEquals("1.|3146", convert("1.4", 10, 8));
 		assertEquals("1.|6", convert("1.4", 10, 16));
-		
+
 		assertEquals("1.|1001", convert("1.6", 10, 2));
 		assertEquals("1.|4631", convert("1.6", 10, 8));
 		assertEquals("1.|9", convert("1.6", 10, 16));
-		
+
 		assertEquals("1.1|0110", convert("1.7", 10, 2));
 		assertEquals("1.5|4631", convert("1.7", 10, 8));
 		assertEquals("1.B|3", convert("1.7", 10, 16));
-		
+
 		assertEquals("1.|1100", convert("1.8", 10, 2));
 		assertEquals("1.|6314", convert("1.8", 10, 8));
 		assertEquals("1.|C", convert("1.8", 10, 16));
-		
+
 		assertEquals("1.1|1100", convert("1.9", 10, 2));
 		assertEquals("1.7|1463", convert("1.9", 10, 8));
 		assertEquals("1.E|6", convert("1.9", 10, 16));
