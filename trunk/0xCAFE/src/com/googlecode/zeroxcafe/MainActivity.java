@@ -129,18 +129,7 @@ public class MainActivity extends Activity {
 	}
 
 	private int getBaseByPos(int pos) {
-		switch (pos) {
-		case 0:
-			return 2;
-		case 1:
-			return 8;
-		case 2:
-			return 10;
-		case 3:
-			return 16;
-		default:
-			return 10;
-		}
+		return pos+2;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {

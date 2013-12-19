@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
+import org.apache.commons.math3.fraction.BigFraction;
+
 /**
  * A utility class to convert numbers from one radix into another. It also
  * offers methods to check the compatibility of numbers with specific radixes.
@@ -225,30 +227,32 @@ public final class MathUtils {
 	 *            source radix
 	 * @return decimal number
 	 */
-	private static BigDecimal convertToDecimal(String number, int radix) {
+	private static BigFraction convertToDecimal(String number, int radix) {
 		if (radix == 10)
-			return new BigDecimal(trimNumber(number));
+			return BigFractionUtils.fromBigDecimal(new BigDecimal(
+					trimNumber(number)));
 
 		int decimalPoint = number.indexOf(DECIMAL_POINT);
 		boolean hasDecimalPoint = decimalPoint != -1;
 
-		if (decimalPoint == -1)
+		if (!hasDecimalPoint)
 			decimalPoint = number.length();
 
-		BigDecimal result = BigDecimal.ZERO;
+		BigFraction result = BigFraction.ZERO;
 
 		if (decimalPoint != 0)
-			result = new BigDecimal(new BigInteger(number.substring(0,
+			result = new BigFraction(new BigInteger(number.substring(0,
 					decimalPoint), radix));
 
 		if (hasDecimalPoint) {
-			BigDecimal factor = BigDecimal.ONE;
-			BigDecimal bigRadix = new BigDecimal(radix);
+			BigInteger factor = BigInteger.ONE;
+			BigInteger bigRadix = BigInteger.valueOf(radix);
 
 			for (int i = decimalPoint + 1; i < number.length(); i++) {
 				int digit = digit(number.charAt(i), radix);
 				factor = factor.multiply(bigRadix);
-				result = result.add(new BigDecimal(digit).divide(factor));
+				result = result.add(new BigFraction(BigInteger.valueOf(digit),
+						factor));
 			}
 		}
 
@@ -264,60 +268,48 @@ public final class MathUtils {
 	 *            target radix
 	 * @return converted number in target radix
 	 */
-	private static String convertFromDecimal(BigDecimal number, int radix) {
-		if (radix == 10)
-			return trimNumber(number.toPlainString());
+	private static String convertFromDecimal(BigFraction number, int radix) {
+//		if (radix == 10)
+//			return trimNumber(number.toPlainString());
 
 		StringBuilder result = new StringBuilder();
 
-		String numberString = number.toPlainString();
-		int decimalPoint = numberString.indexOf(DECIMAL_POINT);
+		BigInteger integerPart=BigFractionUtils.integerPart(number);
+		
+		result.append(integerPart.toString(radix).toUpperCase(
+				Locale.ENGLISH));
+		number=number.subtract(integerPart);
+		
+		result.append(DECIMAL_POINT);
 
-		if (decimalPoint != -1) {
+		int counter = 0;
+		StringBuilder fractionalResult = new StringBuilder();
+		List<BigFraction> fractionalPartList = new ArrayList<BigFraction>();
 
-			if (decimalPoint != 0) {
-				BigInteger integerPart = number.toBigInteger();
-				result.append(integerPart.toString(radix).toUpperCase(
-						Locale.ENGLISH));
-				number = number.subtract(new BigDecimal(integerPart));
+		while (number.compareTo(BigFraction.ZERO) > 0
+				&& counter < CONVERT_FROM_DECIMAL_MAX_LOOPS) {
+
+			int fractionalPartListIndex = fractionalPartList
+					.indexOf(number);
+
+			if (fractionalPartListIndex != -1) {
+				fractionalResult.insert(fractionalPartListIndex,
+						PERIODICAL_FRACTION_INDICATOR);
+				break;
 			}
 
-			result.append(DECIMAL_POINT);
+			fractionalPartList.add(number);
 
-			int counter = 0;
-			StringBuilder fractionalResult = new StringBuilder();
-			List<BigDecimal> fractionalPartList = new ArrayList<BigDecimal>();
+			number = number.multiply(radix);
+			BigInteger integerPartDigit = BigFractionUtils.integerPart(number);
+			fractionalResult.append(integerPartDigit.toString(radix)
+					.toUpperCase(Locale.ENGLISH));
+			number = number.subtract(integerPartDigit);
 
-			while (number.compareTo(BigDecimal.ZERO) > 0
-					&& counter < CONVERT_FROM_DECIMAL_MAX_LOOPS) {
-
-				int fractionalPartListIndex = fractionalPartList
-						.indexOf(number);
-
-				if (fractionalPartListIndex != -1) {
-					fractionalResult.insert(fractionalPartListIndex,
-							PERIODICAL_FRACTION_INDICATOR);
-					break;
-				}
-
-				fractionalPartList.add(number);
-
-				number = number.multiply(new BigDecimal(radix));
-				BigInteger integerPart = number.toBigInteger();
-				fractionalResult.append(integerPart.toString(radix)
-						.toUpperCase(Locale.ENGLISH));
-				number = number.subtract(new BigDecimal(integerPart));
-
-				counter++;
-			}
-
-			result.append(fractionalResult);
-
-		} else {
-
-			result.append(number.toBigInteger().toString(radix));
-
+			counter++;
 		}
+
+		result.append(fractionalResult);
 
 		String res = trimNumber(result.toString());
 
