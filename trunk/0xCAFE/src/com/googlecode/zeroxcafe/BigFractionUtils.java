@@ -16,14 +16,20 @@ public final class BigFractionUtils {
 	 */
 	private BigFractionUtils() {
 	}
-	
+
 	/**
 	 * Convert a BigDecimal into a BigFraction object.
 	 * 
-	 * @param decimal BigDecimal object
+	 * @param decimal
+	 *            BigDecimal object
 	 * @return BigFraction object
+	 * @throws NullPointerException
+	 *             if decimal is null
 	 */
 	public static BigFraction fromBigDecimal(BigDecimal decimal) {
+
+		if (decimal == null)
+			throw new NullPointerException("decimal is null");
 
 		BigInteger denominator = BigInteger.ONE;
 
@@ -36,14 +42,20 @@ public final class BigFractionUtils {
 
 		return new BigFraction(decimal.toBigInteger(), denominator);
 	}
-	
+
 	/**
 	 * Returns the integer part of the fraction. Example: 5/2 = 2 R 1; return 2
 	 * 
-	 * @param fraction A {@link BigFraction} object
+	 * @param fraction
+	 *            A {@link BigFraction} object
 	 * @return the integer part as a {@link BigInteger}
+	 * @throws NullPointerException
+	 *             if fraction is null
 	 */
 	public static BigInteger integerPart(BigFraction fraction) {
+		if (fraction == null)
+			throw new NullPointerException("fraction is null");
+
 		return fraction.getNumerator().divide(fraction.getDenominator());
 	}
 }
