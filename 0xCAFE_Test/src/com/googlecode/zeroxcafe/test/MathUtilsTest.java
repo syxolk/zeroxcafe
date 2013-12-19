@@ -19,6 +19,32 @@ public class MathUtilsTest extends TestCase {
 		assertFalse(isCompatible("0.12", 2));
 	}
 
+	public void testIsCompatibleException() {
+		try {
+			isCompatible(null, 10);
+			fail("no exception");
+		} catch (Exception e) {
+			assertEquals(NullPointerException.class.getName(), e.getClass()
+					.getName());
+		}
+
+		try {
+			isCompatible("", 1);
+			fail("no exception");
+		} catch (Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
+					.getName());
+		}
+
+		try {
+			isCompatible("", 37);
+			fail("no exception");
+		} catch (Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
+					.getName());
+		}
+	}
+
 	public void testHasMaximumOneDecimalPoint() {
 		assertTrue(hasMaximumOneDecimalPoint("123.1"));
 		assertTrue(hasMaximumOneDecimalPoint("AB.C"));
@@ -31,6 +57,16 @@ public class MathUtilsTest extends TestCase {
 		assertFalse(hasMaximumOneDecimalPoint("ABC.."));
 		assertFalse(hasMaximumOneDecimalPoint("..ABC"));
 		assertFalse(hasMaximumOneDecimalPoint(".ABC."));
+	}
+
+	public void testHasMaximumOneDecimalPointException() {
+		try {
+			hasMaximumOneDecimalPoint(null);
+			fail("no exception");
+		} catch (Exception e) {
+			assertEquals(NullPointerException.class.getName(), e.getClass()
+					.getName());
+		}
 	}
 
 	public void testConvert() {
@@ -53,6 +89,43 @@ public class MathUtilsTest extends TestCase {
 		assertEquals("145376", convert("CAFE", 16, 8));
 		assertEquals("51966", convert("CAFE", 16, 10));
 		assertEquals("CAFE", convert("CAFE", 16, 16));
+	}
+	
+	public void testConvertException() {
+		try {
+			convert(null,3,4);
+			fail("no exception");
+		} catch(Exception e) {
+			assertEquals(NullPointerException.class.getName(), e.getClass().getName());
+		}
+		
+		try {
+			convert("1",1,4);
+			fail("no exception");
+		} catch(Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass().getName());
+		}
+		
+		try {
+			convert("1",37,4);
+			fail("no exception");
+		} catch(Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass().getName());
+		}
+		
+		try {
+			convert("1",3,1);
+			fail("no exception");
+		} catch(Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass().getName());
+		}
+		
+		try {
+			convert("1",3,37);
+			fail("no exception");
+		} catch(Exception e) {
+			assertEquals(IllegalArgumentException.class.getName(), e.getClass().getName());
+		}
 	}
 
 	public void testConvertBorderCases() {

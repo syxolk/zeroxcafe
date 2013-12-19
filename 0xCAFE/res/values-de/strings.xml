@@ -9,10 +9,21 @@
     <string name="output_error_too_much_decimal_points">Die Zahl hat mehr als einen Dezimalpunkt.</string>
     
     <string-array name="bases">
-        <item>dual (2)</item>
-        <item>oktal (8)</item>
-        <item>dezimal (10)</item>
-        <item>hexadezimal (16)</item>
+        <item>Basis 2 (dual)</item>
+        <item>Basis 3</item>
+        <item>Basis 4</item>
+        <item>Basis 5</item>
+        <item>Basis 6</item>
+        <item>Basis 7</item>
+        <item>Basis 8 (oktal)</item>
+        <item>Basis 9</item>
+        <item>Basis 10 (dezimal)</item>
+        <item>Basis 11</item>
+        <item>Basis 12</item>
+        <item>Basis 13</item>
+        <item>Basis 14</item>
+        <item>Basis 15</item>
+        <item>Basis 16 (hexadezimal</item>
     </string-array>
     
     <string name="title_activity_help">Hilfe</string>

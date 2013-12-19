@@ -9,10 +9,21 @@
     <string name="output_error_too_much_decimal_points">Number has more than one decimal point.</string>
 
     <string-array name="bases">
-        <item>binary (2)</item>
-        <item>octal (8)</item>
-        <item>decimal (10)</item>
-        <item>hexadecimal (16)</item>
+        <item>base 2 (binary)</item>
+        <item>base 3</item>
+        <item>base 4</item>
+        <item>base 5</item>
+        <item>base 6</item>
+        <item>base 7</item>
+        <item>base 8 (octal)</item>
+        <item>base 9</item>
+        <item>base 10 (decimal)</item>
+        <item>base 11</item>
+        <item>base 12</item>
+        <item>base 13</item>
+        <item>base 14</item>
+        <item>base 15</item>
+        <item>base 16 (hexadecimal)</item>
     </string-array>
 
     <string name="title_activity_help">Help</string>
