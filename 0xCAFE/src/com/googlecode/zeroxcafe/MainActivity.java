@@ -159,7 +159,7 @@ public class MainActivity extends Activity {
 		try {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-				ClipData clip = ClipData.newPlainText("0xCAFE result", text);
+				ClipData clip = ClipData.newPlainText(getString(R.string.clip_data_label), text);
 				clipboard.setPrimaryClip(clip);
 			} else {
 				copyResultToClipboardOldDevices(text);

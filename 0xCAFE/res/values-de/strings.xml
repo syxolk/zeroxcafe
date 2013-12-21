@@ -38,5 +38,6 @@
 	<string name="copy_result">Ergebnis in die Zwischenablage kopieren</string>
 	<string name="copy_result_success">Ergebnis wurde erfolgreich in die Zwischenablage kopiert!</string>
 	<string name="copy_result_error">Beim Kopieren in die Zwischenablage trat ein Fehler auf!</string>
+	<string name="clip_data_label">0xCAFE Ergebnis</string>
     
 </resources>
