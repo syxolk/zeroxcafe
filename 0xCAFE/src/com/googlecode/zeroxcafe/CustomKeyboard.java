@@ -27,6 +27,7 @@ import com.googlecode.zeroxcafe.R;
 public class CustomKeyboard {
 	public final static int CodeDelete = -5; // Keyboard.KEYCODE_DELETE
 	public final static int CodeCancel = -3; // Keyboard.KEYCODE_CANCEL
+	public final static int CodeDecimalPoint = 46; //decimal point '.'
 	public final static int CodeAllLeft = 55001;
 	public final static int CodeLeft = 55002;
 	public final static int CodeRight = 55003;
@@ -150,7 +151,7 @@ public class CustomKeyboard {
 			} else if (primaryCode == CodeAllRight) {
 				edittext.setSelection(edittext.length());
 			} else {// Insert character
-				if (primaryCode == '.') {
+				if (primaryCode == CodeDecimalPoint) {
 					primaryCode = edittext.getContext()
 							.getString(R.string.keyboard_decimalpoint)
 							.charAt(0);
