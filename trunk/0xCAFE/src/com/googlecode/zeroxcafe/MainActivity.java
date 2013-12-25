@@ -6,10 +6,12 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +31,11 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 	CustomKeyboard mCustomKeyboard;
+
 	private TextView outputView;
+	private Spinner inputSpinner;
+	private Spinner outputSpinner;
+	private EditText inputEdit;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		outputView = (TextView) findViewById(R.id.outputText);
+		inputSpinner = (Spinner) findViewById(R.id.inputType);
+		outputSpinner = (Spinner) findViewById(R.id.outputType);
+		inputEdit = (EditText) findViewById(R.id.inputText);
 
 		initSpinner((Spinner) findViewById(R.id.inputType));
 		initSpinner((Spinner) findViewById(R.id.outputType));
@@ -86,50 +95,49 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	private void setOutput(String text) {
-		outputView.setText(text);
-	}
-
-	private void setOutput(int resId) {
-		setOutput(getString(resId));
-	}
-
 	/**
 	 * This method is being called if the input number or other parameters
 	 * change.
 	 */
 	private void updateValue() {
-		Spinner inputSpinner = (Spinner) findViewById(R.id.inputType);
-		Spinner outputSpinner = (Spinner) findViewById(R.id.outputType);
-		EditText inputEdit = (EditText) findViewById(R.id.inputText);
+		new ComputeTask().execute();
+	}
 
-		if (inputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
-				|| outputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
-				|| inputEdit.length() == 0) {
+	private class ComputeTask extends AsyncTask<Void, Void, String> {
 
-			setOutput(R.string.output_empty);
+		protected String doInBackground(Void... params) {
+			if (inputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
+					|| outputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
+					|| inputEdit.length() == 0) {
 
-		} else {
-			char decimalChar = getString(R.string.keyboard_decimalpoint)
-					.charAt(0);
+				return getString(R.string.output_empty);
 
-			int baseFrom = getBaseByPos(inputSpinner.getSelectedItemPosition());
-			int baseTo = getBaseByPos(outputSpinner.getSelectedItemPosition());
-			String input = NumberFormatUtils.deformat(inputEdit.getText()
-					.toString(), decimalChar);
+			} else {
+				char decimalChar = getString(R.string.keyboard_decimalpoint)
+						.charAt(0);
 
-			boolean compatible = MathUtils.isCompatible(input, baseFrom);
-			boolean maximum1DP = MathUtils.hasMaximumOneDecimalPoint(input);
+				int baseFrom = getBaseByPos(inputSpinner
+						.getSelectedItemPosition());
+				int baseTo = getBaseByPos(outputSpinner
+						.getSelectedItemPosition());
+				String input = NumberFormatUtils.deformat(inputEdit.getText()
+						.toString(), decimalChar);
 
-			if (compatible && maximum1DP) {
+				boolean compatible = MathUtils.isCompatible(input, baseFrom);
+				boolean maximum1DP = MathUtils.hasMaximumOneDecimalPoint(input);
+
+				if (!compatible)
+					return getString(R.string.output_error_incompatible);
+				if (!maximum1DP)
+					return getString(R.string.output_error_too_much_decimal_points);
+
 				String output = MathUtils.convert(input, baseFrom, baseTo);
-
-				setOutput(NumberFormatUtils.format(output, decimalChar));
-			} else if (!compatible) {
-				setOutput(R.string.output_error_incompatible);
-			} else if (!maximum1DP) {
-				setOutput(R.string.output_error_too_much_decimal_points);
+				return NumberFormatUtils.format(output, decimalChar);
 			}
+		}
+
+		protected void onPostExecute(String result) {
+			outputView.setText(result);
 		}
 	}
 
@@ -171,13 +179,14 @@ public class MainActivity extends Activity {
 				copyResultToClipboardOldDevices(text);
 			}
 
-			Toast toast = Toast
-					.makeText(this, getString(R.string.copy_result_success),
-							Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(this, R.string.copy_result_success,
+					Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER, 0, 0);
 			toast.show();
 		} catch (Exception e) {
-			Toast toast = Toast.makeText(this,
-					getString(R.string.copy_result_error), Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, R.string.copy_result_error,
+					Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
 			toast.show();
 		}
 	}
