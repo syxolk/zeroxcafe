@@ -110,16 +110,21 @@ public class MainActivity extends Activity {
 			setOutput(R.string.output_empty);
 
 		} else {
+			char decimalChar = getString(R.string.keyboard_decimalpoint)
+					.charAt(0);
+
 			int baseFrom = getBaseByPos(inputSpinner.getSelectedItemPosition());
 			int baseTo = getBaseByPos(outputSpinner.getSelectedItemPosition());
-			String input = inputEdit.getText().toString();
+			String input = NumberFormatUtils.deformat(inputEdit.getText()
+					.toString(), decimalChar);
 
 			boolean compatible = MathUtils.isCompatible(input, baseFrom);
 			boolean maximum1DP = MathUtils.hasMaximumOneDecimalPoint(input);
 
 			if (compatible && maximum1DP) {
 				String output = MathUtils.convert(input, baseFrom, baseTo);
-				setOutput(MathUtils.format(output));
+
+				setOutput(NumberFormatUtils.format(output, decimalChar));
 			} else if (!compatible) {
 				setOutput(R.string.output_error_incompatible);
 			} else if (!maximum1DP) {
@@ -129,7 +134,7 @@ public class MainActivity extends Activity {
 	}
 
 	private int getBaseByPos(int pos) {
-		return pos+2;
+		return pos + 2;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -159,7 +164,8 @@ public class MainActivity extends Activity {
 		try {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-				ClipData clip = ClipData.newPlainText(getString(R.string.clip_data_label), text);
+				ClipData clip = ClipData.newPlainText(
+						getString(R.string.clip_data_label), text);
 				clipboard.setPrimaryClip(clip);
 			} else {
 				copyResultToClipboardOldDevices(text);

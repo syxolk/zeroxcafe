@@ -38,5 +38,6 @@
     <string name="copy_result_success">Result was successfully copied to clipboard.</string>
     <string name="copy_result_error">Failed to copy the result to the clipboard.</string>
     <string name="clip_data_label">0xCAFE result</string>
+    <string name="keyboard_decimalpoint">.</string>
 
 </resources>

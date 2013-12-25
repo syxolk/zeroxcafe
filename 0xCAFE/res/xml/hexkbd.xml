@@ -32,7 +32,7 @@
     </Row>
     <Row>
         <Key android:codes="48"    android:keyLabel="0" android:keyWidth="12.5%p" android:horizontalGap="12.5%p" android:keyEdgeFlags="left" />
-        <Key android:codes="46"    android:keyLabel="." android:keyWidth="12.5%p" />
+        <Key android:codes="46"    android:keyLabel="@string/keyboard_decimalpoint" android:keyWidth="12.5%p" />
         <Key android:codes="-3"    android:keyIcon="@drawable/ic_action_keyboard" android:keyWidth="25%p" android:horizontalGap="6.25%p" android:keyEdgeFlags="right" />
     </Row>
 </Keyboard>

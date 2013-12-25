@@ -150,6 +150,12 @@ public class CustomKeyboard {
 			} else if (primaryCode == CodeAllRight) {
 				edittext.setSelection(edittext.length());
 			} else {// Insert character
+				if (primaryCode == '.') {
+					primaryCode = edittext.getContext()
+							.getString(R.string.keyboard_decimalpoint)
+							.charAt(0);
+				}
+
 				editable.insert(start, Character.toString((char) primaryCode));
 			}
 		}
