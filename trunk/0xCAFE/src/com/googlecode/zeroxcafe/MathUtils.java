@@ -39,7 +39,7 @@ public final class MathUtils {
 	 * This class always uses the american decimal point for its parsing and
 	 * converting.
 	 */
-	private static final char DECIMAL_POINT = '.';
+	public static final char DECIMAL_POINT = '.';
 
 	/**
 	 * Pattern for removing leading zeroes.
@@ -314,27 +314,5 @@ public final class MathUtils {
 		String res = trimNumber(result.toString());
 
 		return res;
-	}
-
-	/**
-	 * Formats a converted number. Currently this method just replaces the
-	 * PERIODICAL_FRACTION_INDICATOR with an overline character.
-	 * 
-	 * @param number
-	 *            converted number
-	 * @throws NullPointerException
-	 *             if number is null
-	 * @return formatted number
-	 */
-	public static String format(String number) {
-		if (number == null)
-			throw new NullPointerException("number is null");
-
-		if (number.indexOf(PERIODICAL_FRACTION_INDICATOR) != -1) {
-			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
-			number = number.replace('|', '\u00AF');
-		}
-
-		return number;
 	}
 }
