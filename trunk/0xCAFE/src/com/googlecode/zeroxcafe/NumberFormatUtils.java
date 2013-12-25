@@ -10,6 +10,11 @@ public final class NumberFormatUtils {
 	}
 
 	/**
+	 * Overline character
+	 */
+	private static final char OVERLINE = '\u00AF';
+
+	/**
 	 * Formats a converted number. Currently this method replaces the
 	 * PERIODICAL_FRACTION_INDICATOR with an overline character and replaces the
 	 * decimal point '.' to the localized character.
@@ -29,7 +34,7 @@ public final class NumberFormatUtils {
 		if (number.indexOf(MathUtils.PERIODICAL_FRACTION_INDICATOR) != -1) {
 			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
 			number = number.replace(MathUtils.PERIODICAL_FRACTION_INDICATOR,
-					'\u00AF');
+					OVERLINE);
 		}
 
 		number = number.replace(MathUtils.DECIMAL_POINT, localizedDecimalPoint);

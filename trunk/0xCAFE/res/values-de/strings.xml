@@ -32,6 +32,9 @@
         Die App bekam ihren Namen von Programmiersprachen wie C, bei denen Hex-Zahlen mit 0x beginnen.
         Deshalb ist der Ausdruck \'0xCAFE\' in C eine gültige Zahl, mit dem dezimalen Wert 51966, probier\'s aus :)
     </string>
+    <string name="help_decimalpoint">Diese App verwendet lokalisierte Dezimalpunkte. In dieser Sprache ist es das Komma (,).</string>
+    <string name="help_overline">Das Überstrich-Zeichen (&#175;) leitet einen periodischen Dezimalbruch ein.
+        Das heißt alle folgenden Ziffern sind Teil der Periode.</string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
 	<string name="title_activity_wiki">Wiki</string>

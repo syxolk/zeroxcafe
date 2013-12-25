@@ -9,12 +9,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HelpActivity" >
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/help_description"
-        android:textSize="20sp" />
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_description"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_decimalpoint" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/help_overline" />
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:layout_width="match_parent"
