@@ -9,14 +9,14 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
 
   * Eingabe-Basis kann auf der Tastatur geändert werden.
   * Die Ausgabe erfolgt stets in allen verfügbaren Basen (2,8,10,16)
-  * beliebe Basen sollen auswählbar sein
   * Einstellung, ob Buchstaben in Hex-Werten groß oder klein geschrieben werden sollen
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
   * Dialog mit Spinnern zur Auswahl der Ein- und Ausgabe-Basis.
-  * Auf Android 2.3.3 wird der Überstrich (Periode) nicht angezeigt.
   * Hilfe: Erklärung, was der Überstrich macht, hinzufügen.
 
 = Erledigt =
 
   * Anleitung zur händischen Umrechnung von Zahlen zw. verschiedenen Basen mit Prüf-Methode, Modulo-Methode und 4-Bit-to-Hex-Methode.
   * Automatische Erkennung von Perioden nach dem Trennpunkt
+  * beliebe Basen sollen auswählbar sein
+  * Auf Android 2.3.3 wird der Überstrich (Periode) nicht angezeigt. (Fix: anderes Überstrich-Zeichen)
