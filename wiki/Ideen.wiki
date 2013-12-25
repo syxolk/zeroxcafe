@@ -12,7 +12,8 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Einstellung, ob Buchstaben in Hex-Werten groß oder klein geschrieben werden sollen
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
   * Dialog mit Spinnern zur Auswahl der Ein- und Ausgabe-Basis.
-  * Hilfe: Erklärung, was der Überstrich macht, hinzufügen.
+  * Auf dem S4 wird die Tastatur nicht korrekt angezeigt.
+  * Berechnungen in einen Background-Thread verschieben.
 
 = Erledigt =
 
@@ -20,3 +21,4 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Automatische Erkennung von Perioden nach dem Trennpunkt
   * beliebe Basen sollen auswählbar sein
   * Auf Android 2.3.3 wird der Überstrich (Periode) nicht angezeigt. (Fix: anderes Überstrich-Zeichen)
+  * Hilfe: Erklärung, was der Überstrich macht, hinzufügen.
