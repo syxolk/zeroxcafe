@@ -7,11 +7,13 @@
         android:title="@string/copy_result"/>
     <item
         android:id="@+id/action_wiki"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_help"
         android:title="@string/title_activity_wiki"/>
     <item
         android:id="@+id/action_help"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_about"
         android:title="@string/title_activity_help"/>
 
 </menu>
