@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">0xCAFE</string>
-    <string name="description">Convert a number from one radix into another.</string>
     <string name="input_hint">Enter a number</string>
     <string name="output_empty">-</string>
     <string name="output_error_incompatible">Incompatible number.</string>
@@ -38,7 +37,7 @@
     <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
     <string name="title_activity_wiki">Wiki</string>
     <string name="copy_result">Copy result to clipboard</string>
-    <string name="copy_result_success">Result was successfully copied to clipboard.</string>
+    <string name="copy_result_success">Result was copied to clipboard.</string>
     <string name="copy_result_error">Failed to copy the result to the clipboard.</string>
     <string name="clip_data_label">0xCAFE result</string>
     <string name="keyboard_decimalpoint">.</string>

@@ -2,7 +2,6 @@
 <resources>
     
     <string name="app_name">0xCAFE</string>
-    <string name="description">Rechne eine Zahl von einer Basis in eine andere um.</string>
     <string name="input_hint">Gib eine Zahl ein</string>
     <string name="output_empty">-</string>
     <string name="output_error_incompatible">Inkompatible Eingabezahl</string>
@@ -39,7 +38,7 @@
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
 	<string name="title_activity_wiki">Wiki</string>
 	<string name="copy_result">Ergebnis in die Zwischenablage kopieren</string>
-	<string name="copy_result_success">Ergebnis wurde erfolgreich in die Zwischenablage kopiert!</string>
+	<string name="copy_result_success">Ergebnis wurde in die Zwischenablage kopiert.</string>
 	<string name="copy_result_error">Beim Kopieren in die Zwischenablage trat ein Fehler auf!</string>
 	<string name="clip_data_label">0xCAFE Ergebnis</string>
 	<string name="keyboard_decimalpoint">,</string>
