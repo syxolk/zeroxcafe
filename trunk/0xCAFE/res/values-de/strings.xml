@@ -43,5 +43,6 @@
 	<string name="copy_result_error">Beim Kopieren in die Zwischenablage trat ein Fehler auf!</string>
 	<string name="clip_data_label">0xCAFE Ergebnis</string>
 	<string name="keyboard_decimalpoint">,</string>
+	<string name="keyboard_clear">CLR</string>
     
 </resources>
