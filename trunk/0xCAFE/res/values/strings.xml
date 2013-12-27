@@ -33,6 +33,8 @@
     <string name="help_decimalpoint">This app uses a localized decimal point. In this language it is the dot (.).</string>
     <string name="help_overline">The overline character (&#175;) introduces a periodical fraction.
         That means all succeeding digits are part of that period.</string>
+    <string name="help_ellipsis">The ellipsis character (&#8230;) at the end of a number
+        is indicating an unfinished computation of digits after the decimal point.</string>
     <string name="help_developers">Developed by Bitfröst Studios</string>
     <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
     <string name="title_activity_wiki">Wiki</string>
