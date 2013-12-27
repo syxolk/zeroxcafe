@@ -38,6 +38,7 @@
         dass nicht alle Nachkommastellen berechnet wurden.</string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
+    <string name="help_rate">Im Play store bewerten</string>
 	<string name="title_activity_wiki">Wiki</string>
 	<string name="copy_result">Ergebnis in die Zwischenablage kopieren</string>
 	<string name="copy_result_success">Ergebnis wurde in die Zwischenablage kopiert.</string>
