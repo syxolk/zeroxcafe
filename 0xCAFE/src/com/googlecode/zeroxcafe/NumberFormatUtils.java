@@ -15,6 +15,11 @@ public final class NumberFormatUtils {
 	private static final char OVERLINE = '\u00AF';
 
 	/**
+	 * Character for unfinished decimal places (3 dots)
+	 */
+	private static final char UNFINISHED_DECIMAL_PLACES = '\u2026';
+
+	/**
 	 * Formats a converted number. Currently this method replaces the
 	 * PERIODICAL_FRACTION_INDICATOR with an overline character and replaces the
 	 * decimal point '.' to the localized character.
@@ -38,6 +43,9 @@ public final class NumberFormatUtils {
 		}
 
 		number = number.replace(MathUtils.DECIMAL_POINT, localizedDecimalPoint);
+
+		number = number.replace(MathUtils.UNFINISHED_DECIMAL_PLACES_INDICATOR,
+				UNFINISHED_DECIMAL_PLACES);
 
 		return number;
 	}

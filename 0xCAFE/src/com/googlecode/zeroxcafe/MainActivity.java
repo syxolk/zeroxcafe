@@ -95,16 +95,23 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	private ComputeTask lastComputeTask;
+
 	/**
 	 * This method is being called if the input number or other parameters
 	 * change.
 	 */
 	private void updateValue() {
-		new ComputeTask().execute();
+		if (lastComputeTask != null) {
+			lastComputeTask.cancel(false);
+		}
+
+		lastComputeTask = new ComputeTask();
+		lastComputeTask.execute();
 	}
 
 	private class ComputeTask extends AsyncTask<Void, Void, String> {
-
+		
 		protected String doInBackground(Void... params) {
 			if (inputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
 					|| outputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION

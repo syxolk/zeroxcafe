@@ -27,7 +27,7 @@ public final class MathUtils {
 	 * Maximum number of loops to go through when converting a decimal number
 	 * into a number of another radix. Otherwise there will be an infinity loop.
 	 */
-	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 200;
+	private static final int CONVERT_FROM_DECIMAL_MAX_LOOPS = 50;
 
 	/**
 	 * This character is used in a converted number to show that all digits
@@ -40,6 +40,12 @@ public final class MathUtils {
 	 * converting.
 	 */
 	public static final char DECIMAL_POINT = '.';
+
+	/**
+	 * This character is used to show that the computed decimal places were not
+	 * fully computed.
+	 */
+	public static final char UNFINISHED_DECIMAL_PLACES_INDICATOR = '+';
 
 	/**
 	 * Pattern for removing leading zeroes.
@@ -269,17 +275,16 @@ public final class MathUtils {
 	 * @return converted number in target radix
 	 */
 	private static String convertFromDecimal(BigFraction number, int radix) {
-//		if (radix == 10)
-//			return trimNumber(number.toPlainString());
+		// if (radix == 10)
+		// return trimNumber(number.toPlainString());
 
 		StringBuilder result = new StringBuilder();
 
-		BigInteger integerPart=BigFractionUtils.integerPart(number);
-		
-		result.append(integerPart.toString(radix).toUpperCase(
-				Locale.ENGLISH));
-		number=number.subtract(integerPart);
-		
+		BigInteger integerPart = BigFractionUtils.integerPart(number);
+
+		result.append(integerPart.toString(radix).toUpperCase(Locale.ENGLISH));
+		number = number.subtract(integerPart);
+
 		result.append(DECIMAL_POINT);
 
 		int counter = 0;
@@ -289,8 +294,7 @@ public final class MathUtils {
 		while (number.compareTo(BigFraction.ZERO) > 0
 				&& counter < CONVERT_FROM_DECIMAL_MAX_LOOPS) {
 
-			int fractionalPartListIndex = fractionalPartList
-					.indexOf(number);
+			int fractionalPartListIndex = fractionalPartList.indexOf(number);
 
 			if (fractionalPartListIndex != -1) {
 				fractionalResult.insert(fractionalPartListIndex,
@@ -307,6 +311,12 @@ public final class MathUtils {
 			number = number.subtract(integerPartDigit);
 
 			counter++;
+		}
+
+		if (counter == CONVERT_FROM_DECIMAL_MAX_LOOPS
+				&& number.compareTo(BigFraction.ZERO) > 0) {
+
+			fractionalResult.append(UNFINISHED_DECIMAL_PLACES_INDICATOR);
 		}
 
 		result.append(fractionalResult);
