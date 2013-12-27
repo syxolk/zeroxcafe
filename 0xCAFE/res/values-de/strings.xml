@@ -34,6 +34,8 @@
     <string name="help_decimalpoint">Diese App verwendet lokalisierte Dezimalpunkte. In dieser Sprache ist es das Komma (,).</string>
     <string name="help_overline">Das Überstrich-Zeichen (&#175;) leitet einen periodischen Dezimalbruch ein.
         Das heißt alle folgenden Ziffern sind Teil der Periode.</string>
+    <string name="help_ellipsis">Die Auslassungspunkte (&#8230;) am Ende einer Zahl zeigen an,
+        dass nicht alle Nachkommastellen berechnet wurden.</string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
 	<string name="title_activity_wiki">Wiki</string>
