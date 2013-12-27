@@ -14,6 +14,9 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Dialog mit Spinnern zur Auswahl der Ein- und Ausgabe-Basis.
   * Loading Spinner anzeigen, wenn berechnet wird
   * bessere Pos1/Und Icons
+  * Tastatur wird auf Android 2.3.3 nicht korrekt dargestellt
+  * Erklärung, was die '...' 3-Punkte machen, hinzufügen
+  * Einstellungsmenü mit Korrektheit des Ergebnisses (Algorithmus, Anzahl Nachkommastellen)
 
 = Erledigt =
 
