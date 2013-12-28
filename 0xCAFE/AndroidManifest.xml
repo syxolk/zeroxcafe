@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.googlecode.zeroxcafe"
+    android:installLocation="auto"
     android:versionCode="3"
     android:versionName="1.2" >
 
@@ -33,6 +34,14 @@
         <activity
             android:name="com.googlecode.zeroxcafe.WikiActivity"
             android:label="@string/title_activity_wiki"
+            android:parentActivityName="com.googlecode.zeroxcafe.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.googlecode.zeroxcafe.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.googlecode.zeroxcafe.StepsActivity"
+            android:label="@string/title_activity_steps"
             android:parentActivityName="com.googlecode.zeroxcafe.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

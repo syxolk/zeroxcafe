@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
 	}
 
 	private class ComputeTask extends AsyncTask<Void, Void, String> {
-		
+
 		protected String doInBackground(Void... params) {
 			if (inputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
 					|| outputSpinner.getSelectedItemPosition() == Spinner.INVALID_POSITION
@@ -158,6 +158,9 @@ public class MainActivity extends Activity {
 		case R.id.action_copy_result:
 			copyResultToClipboard();
 			return true;
+		case R.id.action_show_steps:
+			showSteps();
+			return true;
 		case R.id.action_help:
 			startActivity(new Intent(this, HelpActivity.class));
 			return true;
@@ -167,6 +170,19 @@ public class MainActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	private void showSteps() {
+		Intent intent = new Intent(this, StepsActivity.class);
+		intent.putExtra(StepsActivity.INTENT_NUMBER, NumberFormatUtils
+				.deformat(inputEdit.getText().toString(),
+						getString(R.string.keyboard_decimalpoint).charAt(0)));
+		intent.putExtra(StepsActivity.INTENT_FROM_BASE,
+				getBaseByPos(inputSpinner.getSelectedItemPosition()));
+		intent.putExtra(StepsActivity.INTENT_TO_BASE,
+				getBaseByPos(outputSpinner.getSelectedItemPosition()));
+
+		startActivity(intent);
 	}
 
 	/**

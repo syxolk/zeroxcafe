@@ -26,7 +26,7 @@
     </string-array>
 
     <string name="title_activity_help">Help</string>
-    <string name="help_description">
+    <string name="help_description">        
         With 0xCAFE you can convert numbers from one radix into another.
         The App got its name from programming languages like C, where a hex number starts with 0x.
         Therefore the expression \'0xCAFE\' is a valid number in C, with the decimal value 51966, try it out :)    </string>
@@ -45,5 +45,14 @@
     <string name="clip_data_label">0xCAFE result</string>
     <string name="keyboard_decimalpoint">.</string>
     <string name="keyboard_clear">CLR</string>
+    <string name="title_activity_steps">Steps</string>
+    <string name="steps_title">Computation steps</string>
+    <string name="steps_what">Converting %1$s from base %2$d to %3$d.</string>
+    <string name="steps_step1">Convert to decimal</string>
+    <string name="steps_step2">Convert to target system</string>
+    <string name="steps_step2_div">division</string>
+    <string name="steps_step2_rem">remainder</string>
+    <string name="steps_step2_digit">digit</string>
+    <string name="steps_result">Result</string>
 
 </resources>
