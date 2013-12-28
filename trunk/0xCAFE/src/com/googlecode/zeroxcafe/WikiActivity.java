@@ -1,7 +1,5 @@
 package com.googlecode.zeroxcafe;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -10,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import com.googlecode.zeroxcafe.R;
 
 /**
  * Activity that shows the wiki HTML page. It uses an
@@ -19,8 +16,6 @@ import com.googlecode.zeroxcafe.R;
  * @author Hans
  */
 public class WikiActivity extends Activity {
-
-	private static final String RAW_HTML_RESOURCE_ENCODING = "utf-8";
 
 	private WebView webView;
 
@@ -38,30 +33,21 @@ public class WikiActivity extends Activity {
 
 	private class HtmlLoaderTask extends AsyncTask<Void, Void, String> {
 		protected String doInBackground(Void... params) {
-			StringBuilder text = new StringBuilder();
-
 			try {
-				BufferedReader buffreader = new BufferedReader(
-						new InputStreamReader(getResources().openRawResource(
-								R.raw.wiki), RAW_HTML_RESOURCE_ENCODING));
+				String html = RawUtils.loadStringRes(WikiActivity.this,
+						R.raw.wiki);
+				String css = RawUtils.loadStringRes(WikiActivity.this,
+						R.raw.style);
 
-				String line;
-
-				while ((line = buffreader.readLine()) != null) {
-					text.append(line);
-					text.append('\n');
-				}
+				return html.replace("{{style}}", css);
 			} catch (Exception e) {
-				text.append(e.toString());
+				return e.toString();
 			}
-
-			return text.toString();
-
 		}
 
 		protected void onPostExecute(String result) {
 			webView.loadDataWithBaseURL(null, result, "text/html",
-					RAW_HTML_RESOURCE_ENCODING, null);
+					RawUtils.RESOURCE_ENCODING, null);
 		}
 	}
 

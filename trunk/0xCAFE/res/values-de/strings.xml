@@ -46,5 +46,6 @@
 	<string name="clip_data_label">0xCAFE Ergebnis</string>
 	<string name="keyboard_decimalpoint">,</string>
 	<string name="keyboard_clear">CLR</string>
+	<string name="title_activity_steps">Schritte</string>
     
 </resources>
