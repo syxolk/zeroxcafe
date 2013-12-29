@@ -53,6 +53,10 @@
     <string name="steps_step2_div">division</string>
     <string name="steps_step2_rem">remainder</string>
     <string name="steps_step2_digit">digit</string>
+    <string name="steps_step2_mul">multiplication</string>
+    <string name="steps_step2_int">integer</string>
+    <string name="steps_step2_method_mul">Multiplication method</string>
+    <string name="steps_step2_method_mod">Modulo method</string>
     <string name="steps_result">Result</string>
 
 </resources>
