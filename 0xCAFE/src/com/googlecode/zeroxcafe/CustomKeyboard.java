@@ -45,7 +45,7 @@ public class CustomKeyboard {
 		Keyboard mKeyboard = new Keyboard(activity, keyboardXmlId);
 
 		// Lookup the KeyboardView
-		mKeyboardView = (KeyboardView) activity.findViewById(R.id.keyboardview);
+		mKeyboardView = (KeyboardView) activity.findViewById(keyboardViewId);
 		// Attach the keyboard to the view
 		mKeyboardView.setKeyboard(mKeyboard);
 		// Do not show the preview balloons

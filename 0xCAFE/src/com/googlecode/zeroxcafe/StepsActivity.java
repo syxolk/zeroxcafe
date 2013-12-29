@@ -3,6 +3,8 @@ package com.googlecode.zeroxcafe;
 import java.math.BigInteger;
 import java.util.Locale;
 
+import org.apache.commons.math3.fraction.BigFraction;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -44,8 +46,6 @@ public class StepsActivity extends Activity {
 			try {
 				content.append(RawUtils.loadStringRes(StepsActivity.this,
 						R.raw.style));
-
-				Log.i(StepsActivity.class.getName(), "style loaded");
 			} catch (Exception e) {
 				// do nothing
 				Log.w(StepsActivity.class.getName(), e.toString());
@@ -60,20 +60,16 @@ public class StepsActivity extends Activity {
 				int baseFrom = extras.getInt(INTENT_FROM_BASE);
 				int baseTo = extras.getInt(INTENT_TO_BASE);
 
-				// remove decimal places and decimal point
+				// get position of decimal point
 				int decimalPoint = number.indexOf(MathUtils.DECIMAL_POINT);
 
-				if (decimalPoint != -1) {
-					if (decimalPoint == 0) {
-						number = "0";
-					} else {
-						number = number.substring(0, decimalPoint);
-					}
-				}
-
 				boolean isCompat = MathUtils.isCompatible(number, baseFrom);
+				boolean hasMax1DP = MathUtils.hasMaximumOneDecimalPoint(number);
 
-				if (isCompat) {
+				if (isCompat && hasMax1DP) {
+
+					char localizedDecimalPoint = getString(
+							R.string.keyboard_decimalpoint).charAt(0);
 
 					content.append("<h1>")
 							.append(getString(R.string.steps_title))
@@ -89,27 +85,73 @@ public class StepsActivity extends Activity {
 							.append(getString(R.string.steps_step1))
 							.append("</h2>");
 
-					content.append("(" + number + ")<sub>" + baseFrom
-							+ "</sub>" + " = ");
+					content.append("("
+							+ NumberFormatUtils.format(number,
+									localizedDecimalPoint) + ")<sub>"
+							+ baseFrom + "</sub>" + " = ");
 
-					BigInteger sum = BigInteger.ZERO;
+					String numberBeforeDec = "", numberAfterDec = "";
 
-					for (int i = 0; i < number.length(); i++) {
-
-						int digit = Character.digit(number.charAt(i), baseFrom);
-						int exp = number.length() - 1 - i;
-
-						sum = sum.add(BigInteger.valueOf(baseFrom).pow(exp)
-								.multiply(BigInteger.valueOf(digit)));
-
-						if (i != 0)
-							content.append(" + ");
-
-						content.append(digit + "&middot;" + baseFrom + "<sup>"
-								+ exp + "</sup>");
+					if (decimalPoint == -1) {
+						numberBeforeDec = number;
+					} else if (decimalPoint == 0) {
+						numberAfterDec = number.substring(1);
+					} else if (decimalPoint == number.length() - 1) {
+						numberBeforeDec = number.substring(0,
+								number.length() - 1);
+					} else {
+						numberBeforeDec = number.substring(0, decimalPoint);
+						numberAfterDec = number.substring(decimalPoint + 1);
 					}
 
-					content.append(" = " + sum.toString());
+					BigFraction sum = BigFraction.ZERO;
+					boolean mustWritePlus = false;
+
+					if (numberBeforeDec.length() > 0) {
+						for (int i = 0; i < numberBeforeDec.length(); i++) {
+
+							int digit = Character.digit(
+									numberBeforeDec.charAt(i), baseFrom);
+							int exp = numberBeforeDec.length() - 1 - i;
+
+							sum = sum.add(BigInteger.valueOf(baseFrom).pow(exp)
+									.multiply(BigInteger.valueOf(digit)));
+
+							if (mustWritePlus)
+								content.append(" + ");
+
+							content.append(digit + "&middot;" + baseFrom
+									+ "<sup>" + exp + "</sup>");
+
+							mustWritePlus = true;
+						}
+					}
+
+					if (numberAfterDec.length() > 0) {
+						for (int i = 0; i < numberAfterDec.length(); i++) {
+
+							int digit = Character.digit(
+									numberAfterDec.charAt(i), baseFrom);
+							int exp = i + 1;
+
+							sum = sum.add(new BigFraction(BigInteger
+									.valueOf(digit), BigInteger.valueOf(
+									baseFrom).pow(exp)));
+
+							if (mustWritePlus)
+								content.append(" + ");
+
+							content.append(digit + " &middot; " + baseFrom
+									+ "<sup>-" + exp + "</sup>");
+
+							mustWritePlus = true;
+						}
+					}
+
+					content.append(" = " + sum);
+
+					BigInteger sumInteger = BigFractionUtils.integerPart(sum);
+					BigFraction sumDecPart = sum.subtract(sumInteger);
 
 					// STEP 2
 
@@ -117,48 +159,114 @@ public class StepsActivity extends Activity {
 							.append(getString(R.string.steps_step2))
 							.append("</h2>");
 
-					content.append("<table><tr><th>")
-							.append(getString(R.string.steps_step2_div))
-							.append("</th><th>")
-							.append(getString(R.string.steps_step2_rem))
-							.append("</th><th>")
-							.append(getString(R.string.steps_step2_digit))
-							.append("</th></tr>");
-
 					StringBuilder resNumber = new StringBuilder();
 
-					while (sum.compareTo(BigInteger.ZERO) > 0) {
-						BigInteger[] res = sum.divideAndRemainder(BigInteger
-								.valueOf(baseTo));
-						char rem = res[1].toString(baseTo)
-								.toUpperCase(Locale.US).charAt(0);
+					if (sumInteger.compareTo(BigInteger.ZERO) > 0) {
 
-						content.append("<tr>");
-						content.append("<td>").append(sum).append(" &divide; ")
-								.append(baseTo).append(" = ")
-								.append(res[0].toString()).append("</td>");
-						content.append("<td>R ").append(res[1].toString())
-								.append("</th>");
-						content.append("<td>").append(rem).append("</td>");
-						content.append("</tr>");
+						content.append("<h3>")
+								.append(getString(R.string.steps_step2_method_mod))
+								.append("</h3>");
 
-						sum = res[0];
-						resNumber.insert(0, rem);
+						content.append("<table><tr><th>")
+								.append(getString(R.string.steps_step2_div))
+								.append("</th><th>")
+								.append(getString(R.string.steps_step2_rem))
+								.append("</th><th>")
+								.append(getString(R.string.steps_step2_digit))
+								.append("</th></tr>");
+
+						// Ganzzahl-Teil
+
+						while (sumInteger.compareTo(BigInteger.ZERO) > 0) {
+							BigInteger[] res = sumInteger
+									.divideAndRemainder(BigInteger
+											.valueOf(baseTo));
+							char rem = res[1].toString(baseTo)
+									.toUpperCase(Locale.US).charAt(0);
+
+							content.append("<tr>");
+							content.append("<td>").append(sumInteger)
+									.append(" &divide; ").append(baseTo)
+									.append(" = ").append(res[0].toString())
+									.append("</td>");
+							content.append("<td>R ").append(res[1].toString())
+									.append("</th>");
+							content.append("<td>").append(rem).append("</td>");
+							content.append("</tr>");
+
+							sumInteger = res[0];
+							resNumber.insert(0, rem);
+						}
+
+						content.append("</table>");
 					}
 
-					content.append("</table>");
+					if (sumDecPart.compareTo(BigFraction.ZERO) > 0) {
+						
+						content.append("<h3>")
+						.append(getString(R.string.steps_step2_method_mul))
+						.append("</h3>");
+						
+						resNumber.append(MathUtils.DECIMAL_POINT);
+
+						content.append("<table><tr><th>")
+								.append(getString(R.string.steps_step2_mul))
+								.append("</th><th>")
+								.append(getString(R.string.steps_step2_int))
+								.append("</th><th>")
+								.append(getString(R.string.steps_step2_digit))
+								.append("</th></tr>");
+
+						int maximumSteps = 10, stepCounter = 0;
+
+						while (sumDecPart.compareTo(BigFraction.ZERO) > 0
+								&& stepCounter < maximumSteps) {
+
+							content.append("<tr><td> " + sumDecPart
+									+ " &middot; " + baseTo + " = ");
+
+							sumDecPart = sumDecPart.multiply(BigInteger
+									.valueOf(baseTo));
+
+							content.append(sumDecPart + "</td><td>");
+
+							BigInteger intPart = BigFractionUtils
+									.integerPart(sumDecPart);
+
+							content.append(intPart).append("</td><td>");
+
+							char digit = intPart.toString(baseTo)
+									.toUpperCase(Locale.US).charAt(0);
+
+							content.append(digit).append("</td></tr>");
+
+							sumDecPart = sumDecPart.subtract(intPart);
+
+							resNumber.append(digit);
+							stepCounter++;
+						}
+
+						content.append("</table>");
+					}
 
 					content.append("<h2>")
 							.append(getString(R.string.steps_result))
 							.append("</h2>");
 
-					content.append("(").append(number).append(")<sub>")
-							.append(baseFrom).append("</sub> = (")
-							.append(resNumber.toString()).append(")<sub>")
-							.append(baseTo).append("</sub>");
+					content.append("(")
+							.append(NumberFormatUtils.format(number,
+									localizedDecimalPoint))
+							.append(")<sub>")
+							.append(baseFrom)
+							.append("</sub> = (")
+							.append(NumberFormatUtils.format(
+									resNumber.toString(), localizedDecimalPoint))
+							.append(")<sub>").append(baseTo).append("</sub>");
 
-				} else {
+				} else if (!isCompat) {
 					content.append(getString(R.string.output_error_incompatible));
+				} else if (!hasMax1DP) {
+					content.append(getString(R.string.output_error_too_much_decimal_points));
 				}
 			}
 
