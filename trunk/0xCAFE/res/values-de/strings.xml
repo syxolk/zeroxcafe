@@ -47,5 +47,17 @@
 	<string name="keyboard_decimalpoint">,</string>
 	<string name="keyboard_clear">CLR</string>
 	<string name="title_activity_steps">Schritte</string>
+	<string name="steps_title">Rechenschritte</string>
+    <string name="steps_what">Rechne %1$s von der Basis %2$d in die Basis %3$d um.</string>
+    <string name="steps_step1">Umwandeln in Dezimalsystem</string>
+    <string name="steps_step2">Umwandeln in Zielsystem</string>
+    <string name="steps_step2_div">Division</string>
+    <string name="steps_step2_rem">Rest</string>
+    <string name="steps_step2_digit">Ziffer</string>
+    <string name="steps_step2_mul">Multiplikation</string>
+    <string name="steps_step2_int">Ganzzahl</string>
+    <string name="steps_step2_method_mul">Multiplikationsmethode</string>
+    <string name="steps_step2_method_mod">Modulo-Method</string>
+    <string name="steps_result">Ergebnis</string>
     
 </resources>

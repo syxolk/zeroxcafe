@@ -76,8 +76,10 @@ public class StepsActivity extends Activity {
 							.append("</h1>");
 
 					content.append("<p>")
-							.append(getString(R.string.steps_what, number,
-									baseFrom, baseTo)).append("</p>");
+							.append(getString(R.string.steps_what,
+									NumberFormatUtils.format(number,
+											localizedDecimalPoint), baseFrom,
+									baseTo)).append("</p>");
 
 					// STEP 1
 
@@ -153,6 +155,13 @@ public class StepsActivity extends Activity {
 					BigInteger sumInteger = BigFractionUtils.integerPart(sum);
 					BigFraction sumDecPart = sum.subtract(sumInteger);
 
+					if (sumInteger.compareTo(BigInteger.ZERO) > 0
+							&& sumDecPart.compareTo(BigFraction.ZERO) > 0) {
+						
+						content.append(" = ").append(sumInteger).append(" + ")
+								.append(sumDecPart);
+					}
+
 					// STEP 2
 
 					content.append("<h2>")
@@ -202,11 +211,11 @@ public class StepsActivity extends Activity {
 					}
 
 					if (sumDecPart.compareTo(BigFraction.ZERO) > 0) {
-						
+
 						content.append("<h3>")
-						.append(getString(R.string.steps_step2_method_mul))
-						.append("</h3>");
-						
+								.append(getString(R.string.steps_step2_method_mul))
+								.append("</h3>");
+
 						resNumber.append(MathUtils.DECIMAL_POINT);
 
 						content.append("<table><tr><th>")
