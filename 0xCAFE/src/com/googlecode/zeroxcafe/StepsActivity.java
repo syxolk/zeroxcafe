@@ -157,7 +157,7 @@ public class StepsActivity extends Activity {
 
 					if (sumInteger.compareTo(BigInteger.ZERO) > 0
 							&& sumDecPart.compareTo(BigFraction.ZERO) > 0) {
-						
+
 						content.append(" = ").append(sumInteger).append(" + ")
 								.append(sumDecPart);
 					}
@@ -237,10 +237,15 @@ public class StepsActivity extends Activity {
 							sumDecPart = sumDecPart.multiply(BigInteger
 									.valueOf(baseTo));
 
-							content.append(sumDecPart + "</td><td>");
+							content.append(sumDecPart);
 
 							BigInteger intPart = BigFractionUtils
 									.integerPart(sumDecPart);
+
+							sumDecPart = sumDecPart.subtract(intPart);
+
+							content.append(" = ").append(intPart).append(" + ")
+									.append(sumDecPart).append("</td><td>");
 
 							content.append(intPart).append("</td><td>");
 
@@ -248,8 +253,6 @@ public class StepsActivity extends Activity {
 									.toUpperCase(Locale.US).charAt(0);
 
 							content.append(digit).append("</td></tr>");
-
-							sumDecPart = sumDecPart.subtract(intPart);
 
 							resNumber.append(digit);
 							stepCounter++;
