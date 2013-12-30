@@ -13,6 +13,8 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Einstellungsmenü mit Korrektheit des Ergebnisses (Algorithmus, Anzahl Nachkommastellen)
   * Button zum Tauschen von Ein- und Ausgabe-Basis
   * 'Ist-Gleich'-Button auf Tastatur statt automatischem Rechnen
+  * in Help-Activity ein Link zum Mailen an die Entwickler
+  * in der Help-Activity die Version anzeigen
 
 = Erledigt =
 
