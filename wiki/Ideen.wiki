@@ -29,7 +29,7 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * bessere Pos1/Und Icons
   * Tastatur wird auf Android 2.3.3 nicht korrekt dargestellt (Fix: eigene XML-Datei für v14)
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
- * in Help-Activity ein Link zum Mailen an die Entwickler
+  * in Help-Activity ein Link zum Mailen an die Entwickler
   * in der Help-Activity die Version anzeigen
 
 = Verworfen =
