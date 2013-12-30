@@ -6,5 +6,11 @@
         android:icon="@drawable/ic_action_important"
         android:showAsAction="ifRoom"
         android:title="@string/help_rate"/>
+    
+    <item
+        android:id="@+id/action_mail"
+        android:icon="@drawable/ic_action_email"
+        android:showAsAction="ifRoom"
+        android:title="@string/help_mail"/>
 
 </menu>
