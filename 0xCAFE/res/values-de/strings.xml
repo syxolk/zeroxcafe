@@ -38,11 +38,12 @@
         dass nicht alle Nachkommastellen berechnet wurden.</string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
     <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
-    <string name="help_rate">Im Play store bewerten &#8230;</string>
+    <string name="help_version">Aktuelle Version: %1$s (intern v%2$d)</string>
+    <string name="help_rate">Im Play Store bewerten &#8230;</string>
     <string name="help_mail">Schreibe Mail an Entwickler &#8230;</string>
     <string name="mail_to">bitfroest@gmail.com</string>
     <string name="mail_subject">Über 0xCAFE</string>
-    <string name="mail_text">Liebe Bitfröst Studios,{n}Ich habe eine Idee, fand einen Bug oder möchte euch einfach ermutigen.{n}{n}Ich &#8230;{n}{n}Mit freundlichen Grüßen,{n}&#8230;</string>
+    <string name="mail_text">Liebe Bitfröst Studios,\nIch habe eine Idee, fand einen Bug oder möchte euch einfach ermutigen.\n\nIch &#8230;\n\nMit freundlichen Grüßen,\n&#8230;</string>
     <string name="mail_chooser">Schreibe Mail &#8230;</string>
     <string name="mail_error">Keine Mail-App gefunden.</string>
 	<string name="title_activity_wiki">Wiki</string>

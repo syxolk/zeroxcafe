@@ -4,12 +4,14 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -24,15 +26,23 @@ public class HelpActivity extends Activity {
 
 	private static final String MAILTO_PROTOCOL = "mailto";
 
-	private static final String NEW_LINE_PLACEHOLDER = "{n}";
-	private static final String NEW_LINE = "\n";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 		// Show the Up button in the action bar.
 		setupActionBar();
+
+		TextView versionView = (TextView) findViewById(R.id.help_version);
+
+		try {
+			PackageInfo pInfo = getPackageManager().getPackageInfo(
+					getPackageName(), 0);
+			versionView.setText(getString(R.string.help_version,
+					pInfo.versionName, pInfo.versionCode));
+		} catch (Exception e) {
+			versionView.setVisibility(TextView.GONE);
+		}
 	}
 
 	/**
@@ -93,8 +103,7 @@ public class HelpActivity extends Activity {
 				MAILTO_PROTOCOL, getString(R.string.mail_to), null));
 		emailIntent.putExtra(Intent.EXTRA_SUBJECT,
 				getString(R.string.mail_subject));
-		emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.mail_text)
-				.replace(NEW_LINE_PLACEHOLDER, NEW_LINE));
+		emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.mail_text));
 
 		try {
 			startActivity(Intent.createChooser(emailIntent,
