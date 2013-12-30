@@ -16,6 +16,7 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * in Help-Activity ein Link zum Mailen an die Entwickler
   * in der Help-Activity die Version anzeigen
   * bei der Anzeige der Rechenschritte die Periode erkennen
+  * Rechenschritte als HTML speichern oder sharen
 
 = Erledigt =
 
