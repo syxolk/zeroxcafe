@@ -13,8 +13,6 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Einstellungsmenü mit Korrektheit des Ergebnisses (Algorithmus, Anzahl Nachkommastellen)
   * Button zum Tauschen von Ein- und Ausgabe-Basis
   * 'Ist-Gleich'-Button auf Tastatur statt automatischem Rechnen
-  * in Help-Activity ein Link zum Mailen an die Entwickler
-  * in der Help-Activity die Version anzeigen
   * bei der Anzeige der Rechenschritte die Periode erkennen
   * Rechenschritte als HTML speichern oder sharen
 
@@ -31,6 +29,8 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * bessere Pos1/Und Icons
   * Tastatur wird auf Android 2.3.3 nicht korrekt dargestellt (Fix: eigene XML-Datei für v14)
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
+ * in Help-Activity ein Link zum Mailen an die Entwickler
+  * in der Help-Activity die Version anzeigen
 
 = Verworfen =
 
