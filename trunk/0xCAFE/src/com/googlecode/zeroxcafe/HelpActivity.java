@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * Simple activity with help and about text
@@ -17,6 +18,14 @@ import android.view.MenuItem;
  * @author Hans
  */
 public class HelpActivity extends Activity {
+
+	private static final String MARKET_DETAILS = "market://details?id=";
+	private static final String PLAY_STORE_DETAILS = "http://play.google.com/store/apps/details?id=";
+
+	private static final String MAILTO_PROTOCOL = "mailto";
+
+	private static final String NEW_LINE_PLACEHOLDER = "{n}";
+	private static final String NEW_LINE = "\n";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,9 @@ public class HelpActivity extends Activity {
 		case R.id.action_rate:
 			rateApp();
 			return true;
+		case R.id.action_mail:
+			writeMail();
+			return true;
 		case android.R.id.home:
 			// This ID represents the Home or Up button. In the case of this
 			// activity, the Up button is shown. Use NavUtils to allow users
@@ -66,14 +78,30 @@ public class HelpActivity extends Activity {
 	 * Starts the Google play store to rate the app.
 	 */
 	private void rateApp() {
-		Uri uri = Uri.parse("market://details?id=" + getPackageName());
+		Uri uri = Uri.parse(MARKET_DETAILS + getPackageName());
 		Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
 		try {
 			startActivity(goToMarket);
 		} catch (ActivityNotFoundException e) {
 			startActivity(new Intent(Intent.ACTION_VIEW,
-					Uri.parse("http://play.google.com/store/apps/details?id="
-							+ getPackageName())));
+					Uri.parse(PLAY_STORE_DETAILS + getPackageName())));
+		}
+	}
+
+	private void writeMail() {
+		Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+				MAILTO_PROTOCOL, getString(R.string.mail_to), null));
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT,
+				getString(R.string.mail_subject));
+		emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.mail_text)
+				.replace(NEW_LINE_PLACEHOLDER, NEW_LINE));
+
+		try {
+			startActivity(Intent.createChooser(emailIntent,
+					getString(R.string.mail_chooser)));
+		} catch (Exception ex) {
+			Toast.makeText(this, getString(R.string.mail_error),
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 }
