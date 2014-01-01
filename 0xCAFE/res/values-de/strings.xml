@@ -64,7 +64,7 @@
     <string name="steps_step2_mul">Multiplikation</string>
     <string name="steps_step2_int">Ganzzahl</string>
     <string name="steps_step2_method_mul">Multiplikationsmethode</string>
-    <string name="steps_step2_method_mod">Modulo-Method</string>
+    <string name="steps_step2_method_mod">Modulo-Methode</string>
     <string name="steps_result">Ergebnis</string>
     
 </resources>

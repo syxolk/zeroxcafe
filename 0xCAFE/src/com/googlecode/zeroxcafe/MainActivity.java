@@ -139,7 +139,7 @@ public class MainActivity extends Activity {
 					return getString(R.string.output_error_too_much_decimal_points);
 
 				String output = MathUtils.convert(input, baseFrom, baseTo);
-				return NumberFormatUtils.format(output, decimalChar);
+				return NumberFormatUtils.format(output, decimalChar, false);
 			}
 		}
 
