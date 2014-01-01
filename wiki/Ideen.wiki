@@ -13,8 +13,8 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Einstellungsmenü mit Korrektheit des Ergebnisses (Algorithmus, Anzahl Nachkommastellen)
   * Button zum Tauschen von Ein- und Ausgabe-Basis
   * 'Ist-Gleich'-Button auf Tastatur statt automatischem Rechnen
-  * bei der Anzeige der Rechenschritte die Periode erkennen
   * Rechenschritte als HTML speichern oder sharen
+  * neue TestCases für MathUtils (z.B. Basis 3) und die anderen Utils-Klassen
 
 = Erledigt =
 
@@ -31,6 +31,7 @@ Hier entsteht eine Liste von Ideen und Vorschlägen für diese App.
   * Step-by-Step Anleitung zur Umrechnung mit selbst definierbaren Beispielen
   * in Help-Activity ein Link zum Mailen an die Entwickler
   * in der Help-Activity die Version anzeigen
+  * bei der Anzeige der Rechenschritte die Periode erkennen
 
 = Verworfen =
 
