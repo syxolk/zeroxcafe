@@ -1,6 +1,8 @@
 package com.googlecode.zeroxcafe;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.math3.fraction.BigFraction;
@@ -78,7 +80,7 @@ public class StepsActivity extends Activity {
 					content.append("<p>")
 							.append(getString(R.string.steps_what,
 									NumberFormatUtils.format(number,
-											localizedDecimalPoint), baseFrom,
+											localizedDecimalPoint,false), baseFrom,
 									baseTo)).append("</p>");
 
 					// STEP 1
@@ -87,10 +89,10 @@ public class StepsActivity extends Activity {
 							.append(getString(R.string.steps_step1))
 							.append("</h2>");
 
-					content.append("("
-							+ NumberFormatUtils.format(number,
-									localizedDecimalPoint) + ")<sub>"
-							+ baseFrom + "</sub>" + " = ");
+					content.append("(")
+							.append(NumberFormatUtils.format(number,
+									localizedDecimalPoint,false)).append(")<sub>")
+							.append(baseFrom).append("</sub> = ");
 
 					String numberBeforeDec = "", numberAfterDec = "";
 
@@ -122,8 +124,9 @@ public class StepsActivity extends Activity {
 							if (mustWritePlus)
 								content.append(" + ");
 
-							content.append(digit + "&middot;" + baseFrom
-									+ "<sup>" + exp + "</sup>");
+							content.append(digit).append("&middot;")
+									.append(baseFrom).append("<sup>")
+									.append(exp).append("</sup>");
 
 							mustWritePlus = true;
 						}
@@ -143,14 +146,15 @@ public class StepsActivity extends Activity {
 							if (mustWritePlus)
 								content.append(" + ");
 
-							content.append(digit + " &middot; " + baseFrom
-									+ "<sup>-" + exp + "</sup>");
+							content.append(digit).append(" &middot; ")
+									.append(baseFrom).append("<sup>-")
+									.append(exp).append("</sup>");
 
 							mustWritePlus = true;
 						}
 					}
 
-					content.append(" = " + sum);
+					content.append(" = ").append(sum);
 
 					BigInteger sumInteger = BigFractionUtils.integerPart(sum);
 					BigFraction sumDecPart = sum.subtract(sumInteger);
@@ -193,15 +197,13 @@ public class StepsActivity extends Activity {
 							char rem = res[1].toString(baseTo)
 									.toUpperCase(Locale.US).charAt(0);
 
-							content.append("<tr>");
-							content.append("<td>").append(sumInteger)
-									.append(" &divide; ").append(baseTo)
-									.append(" = ").append(res[0].toString())
-									.append("</td>");
-							content.append("<td>R ").append(res[1].toString())
-									.append("</th>");
-							content.append("<td>").append(rem).append("</td>");
-							content.append("</tr>");
+							content.append("<tr>").append("<td>")
+									.append(sumInteger).append(" &divide; ")
+									.append(baseTo).append(" = ")
+									.append(res[0].toString()).append("</td>")
+									.append("<td>R ").append(res[1].toString())
+									.append("</th>").append("<td>").append(rem)
+									.append("</td>").append("</tr>");
 
 							sumInteger = res[0];
 							resNumber.insert(0, rem);
@@ -227,36 +229,50 @@ public class StepsActivity extends Activity {
 								.append("</th></tr>");
 
 						int maximumSteps = 10, stepCounter = 0;
+						List<BigFraction> decPartList = new ArrayList<BigFraction>();
+						StringBuilder resNumberFracPart = new StringBuilder();
 
 						while (sumDecPart.compareTo(BigFraction.ZERO) > 0
 								&& stepCounter < maximumSteps) {
 
-							content.append("<tr><td> " + sumDecPart
-									+ " &middot; " + baseTo + " = ");
+							int index = decPartList.indexOf(sumDecPart);
 
-							sumDecPart = sumDecPart.multiply(BigInteger
-									.valueOf(baseTo));
+							if (index != -1) {
+								resNumberFracPart
+										.insert(index,
+												MathUtils.PERIODICAL_FRACTION_INDICATOR);
+								break;
+							}
 
-							content.append(sumDecPart);
+							decPartList.add(sumDecPart);
+
+							BigFraction sumDecPartMultResult = sumDecPart
+									.multiply(BigInteger.valueOf(baseTo));
 
 							BigInteger intPart = BigFractionUtils
-									.integerPart(sumDecPart);
+									.integerPart(sumDecPartMultResult);
 
-							sumDecPart = sumDecPart.subtract(intPart);
-
-							content.append(" = ").append(intPart).append(" + ")
-									.append(sumDecPart).append("</td><td>");
-
-							content.append(intPart).append("</td><td>");
+							BigFraction newSumDecPart = sumDecPartMultResult
+									.subtract(intPart);
 
 							char digit = intPart.toString(baseTo)
 									.toUpperCase(Locale.US).charAt(0);
 
-							content.append(digit).append("</td></tr>");
+							content.append("<tr><td> ").append(sumDecPart)
+									.append(" &middot; ").append(baseTo)
+									.append(" = ").append(sumDecPartMultResult)
+									.append(" = ").append(intPart)
+									.append(" + ").append(newSumDecPart)
+									.append("</td><td>").append(intPart)
+									.append("</td><td>").append(digit)
+									.append("</td></tr>");
 
-							resNumber.append(digit);
+							sumDecPart = newSumDecPart;
+							resNumberFracPart.append(digit);
 							stepCounter++;
 						}
+
+						resNumber.append(resNumberFracPart);
 
 						content.append("</table>");
 					}
@@ -267,12 +283,12 @@ public class StepsActivity extends Activity {
 
 					content.append("(")
 							.append(NumberFormatUtils.format(number,
-									localizedDecimalPoint))
+									localizedDecimalPoint,false))
 							.append(")<sub>")
 							.append(baseFrom)
 							.append("</sub> = (")
 							.append(NumberFormatUtils.format(
-									resNumber.toString(), localizedDecimalPoint))
+									resNumber.toString(), localizedDecimalPoint,true))
 							.append(")<sub>").append(baseTo).append("</sub>");
 
 				} else if (!isCompat) {

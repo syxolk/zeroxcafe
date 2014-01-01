@@ -32,14 +32,21 @@ public final class NumberFormatUtils {
 	 *             if number is null
 	 * @return formatted number
 	 */
-	public static String format(String number, char localizedDecimalPoint) {
+	public static String format(String number, char localizedDecimalPoint,
+			boolean html) {
 		if (number == null)
 			throw new NullPointerException("number is null");
 
 		if (number.indexOf(MathUtils.PERIODICAL_FRACTION_INDICATOR) != -1) {
-			// number=number.replace("|","<span style=\"text-decoration:overline;\">")+"</span>";
-			number = number.replace(MathUtils.PERIODICAL_FRACTION_INDICATOR,
-					OVERLINE);
+			if (html)
+				number = number
+						.replace(
+								String.valueOf(MathUtils.PERIODICAL_FRACTION_INDICATOR),
+								"<span style=\"text-decoration:overline;\">")
+						+ "</span>";
+			else
+				number = number.replace(
+						MathUtils.PERIODICAL_FRACTION_INDICATOR, OVERLINE);
 		}
 
 		number = number.replace(MathUtils.DECIMAL_POINT, localizedDecimalPoint);
