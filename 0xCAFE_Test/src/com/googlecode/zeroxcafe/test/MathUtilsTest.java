@@ -253,8 +253,15 @@ public class MathUtilsTest extends TestCase {
 				convert("A1234.5B", 16, 2));
 		assertEquals("2201020310.1123", convert("A1234.5B", 16, 4));
 		assertEquals("22051352.20444043", convert("A1234.5B", 16, 6));
+		assertEquals("5416154.|23263235414450535662660205111420",
+				convert("A1234.5B", 16, 7));
 		assertEquals("2411064.266", convert("A1234.5B", 16, 8));
+		assertEquals("1215335.|31712060084787367625651454034282",
+				convert("A1234.5B", 16, 9));
 		assertEquals("660020.35546875", convert("A1234.5B", 16, 10));
+		assertEquals("279B58.4323", convert("A1234.5B", 16, 12));
+		assertEquals("132764.4D9598A7", convert("A1234.5B", 16, 14));
+		assertEquals("D0865.|54EA9136CC7318AE", convert("A1234.5B", 16, 15));
 		assertEquals("A1234.5B", convert("A1234.5B", 16, 16));
 	}
 
@@ -290,5 +297,21 @@ public class MathUtilsTest extends TestCase {
 		assertEquals("1.1|1100", convert("1.9", 10, 2));
 		assertEquals("1.7|1463", convert("1.9", 10, 8));
 		assertEquals("1.E|6", convert("1.9", 10, 16));
+
+		assertEquals("1.5", convert("1.1", 2, 10));
+		assertEquals("1.|3", convert("1.1", 3, 10));
+		assertEquals("1.25", convert("1.1", 4, 10));
+		assertEquals("1.2", convert("1.1", 5, 10));
+		assertEquals("1.1|6", convert("1.1", 6, 10));
+		assertEquals("1.|142857", convert("1.1", 7, 10));
+		assertEquals("1.125", convert("1.1", 8, 10));
+		assertEquals("1.|1", convert("1.1", 9, 10));
+		assertEquals("1.1", convert("1.1", 10, 10));
+		assertEquals("1.|09", convert("1.1", 11, 10));
+		assertEquals("1.08|3", convert("1.1", 12, 10));
+		assertEquals("1.|076923", convert("1.1", 13, 10));
+		assertEquals("1.0|714285", convert("1.1", 14, 10));
+		assertEquals("1.0|6", convert("1.1", 15, 10));
+		assertEquals("1.0625", convert("1.1", 16, 10));
 	}
 }

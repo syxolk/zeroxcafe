@@ -23,6 +23,11 @@ public final class RawUtils {
 	public static final String RESOURCE_ENCODING = "utf-8";
 
 	/**
+	 * default new line character is \n
+	 */
+	public static final String NEW_LINE = "\n";
+
+	/**
 	 * Loads a raw resource and returns the content as a string.
 	 * 
 	 * @param ctx
@@ -46,7 +51,7 @@ public final class RawUtils {
 
 		while ((line = buffreader.readLine()) != null) {
 			text.append(line);
-			text.append('\n');
+			text.append(NEW_LINE);
 		}
 
 		return text.toString();
