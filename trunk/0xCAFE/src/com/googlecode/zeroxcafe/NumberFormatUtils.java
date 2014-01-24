@@ -20,6 +20,16 @@ public final class NumberFormatUtils {
 	private static final char UNFINISHED_DECIMAL_PLACES = '\u2026';
 
 	/**
+	 * HTML fragment that is inserted before a periodical fraction.
+	 */
+	private static final String OVERLINE_HTML_PREFIX = "<span style=\"text-decoration:overline;\">";
+
+	/**
+	 * HTML fragment that is inserted after a periodicla fraction.
+	 */
+	private static final String OVERLINE_HTML_SUFFIX = "</span>";
+
+	/**
 	 * Formats a converted number. Currently this method replaces the
 	 * PERIODICAL_FRACTION_INDICATOR with an overline character and replaces the
 	 * decimal point '.' to the localized character.
@@ -28,6 +38,8 @@ public final class NumberFormatUtils {
 	 *            converted number
 	 * @param localizedDecimalPoint
 	 *            character for the decimal point
+	 * @param html
+	 *            true, if the formatted number is for HTML, otherwise false
 	 * @throws NullPointerException
 	 *             if number is null
 	 * @return formatted number
@@ -42,8 +54,8 @@ public final class NumberFormatUtils {
 				number = number
 						.replace(
 								String.valueOf(MathUtils.PERIODICAL_FRACTION_INDICATOR),
-								"<span style=\"text-decoration:overline;\">")
-						+ "</span>";
+								OVERLINE_HTML_PREFIX)
+						+ OVERLINE_HTML_SUFFIX;
 			else
 				number = number.replace(
 						MathUtils.PERIODICAL_FRACTION_INDICATOR, OVERLINE);
