@@ -32,8 +32,7 @@ public class BigFractionUtilsTest extends TestCase {
 			fromBigDecimal(null);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(NullPointerException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(NullPointerException.class, e.getClass());
 		}
 	}
 
@@ -50,8 +49,7 @@ public class BigFractionUtilsTest extends TestCase {
 			integerPart(null);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(NullPointerException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(NullPointerException.class, e.getClass());
 		}
 	}
 }
