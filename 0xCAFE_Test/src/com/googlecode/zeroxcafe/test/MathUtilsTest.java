@@ -31,24 +31,21 @@ public class MathUtilsTest extends TestCase {
 			isCompatible(null, 10);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(NullPointerException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(NullPointerException.class, e.getClass());
 		}
 
 		try {
 			isCompatible("", 1);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 
 		try {
 			isCompatible("", 37);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 	}
 
@@ -73,8 +70,7 @@ public class MathUtilsTest extends TestCase {
 			hasMaximumOneDecimalPoint(null);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(NullPointerException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(NullPointerException.class, e.getClass());
 		}
 	}
 
@@ -149,40 +145,35 @@ public class MathUtilsTest extends TestCase {
 			convert(null, 3, 4);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(NullPointerException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(NullPointerException.class, e.getClass());
 		}
 
 		try {
 			convert("1", 1, 4);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 
 		try {
 			convert("1", 37, 4);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 
 		try {
 			convert("1", 3, 1);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 
 		try {
 			convert("1", 3, 37);
 			fail("no exception");
 		} catch (Exception e) {
-			assertEquals(IllegalArgumentException.class.getName(), e.getClass()
-					.getName());
+			assertEquals(IllegalArgumentException.class, e.getClass());
 		}
 	}
 

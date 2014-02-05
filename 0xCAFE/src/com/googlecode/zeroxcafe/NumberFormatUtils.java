@@ -31,8 +31,11 @@ public final class NumberFormatUtils {
 
 	/**
 	 * Formats a converted number. Currently this method replaces the
-	 * PERIODICAL_FRACTION_INDICATOR with an overline character and replaces the
-	 * decimal point '.' to the localized character.
+	 * PERIODICAL_FRACTION_INDICATOR with an overline character, replaces the
+	 * decimal point '.' to the localized character and replaces the
+	 * UNFINISHED_DECIMAL_PLACES_INDICATOR with the three dots character. If the
+	 * html parameter is set to true the period indicator will be replaced by an
+	 * HTML span with text-decoration overline.
 	 * 
 	 * @param number
 	 *            converted number
@@ -70,12 +73,29 @@ public final class NumberFormatUtils {
 	}
 
 	/**
+	 * For documentation see the other format method.
+	 * 
+	 * @param number
+	 *            number to format
+	 * @param localizedDecimalPoint
+	 *            localized decimal point e.g. the comma ','
+	 * @throws NullPointerException
+	 *             if number is null
+	 * @return formatted number
+	 */
+	public static String format(String number, char localizedDecimalPoint) {
+		return format(number, localizedDecimalPoint, false);
+	}
+
+	/**
 	 * Deformats a number from user input with localized decimal point.
 	 * 
 	 * @param number
 	 *            number to deformat
 	 * @param localizedDecimalPoint
 	 *            character for the decimal point
+	 * @throws NullPointerException
+	 *             if number is null
 	 * @return deformatted number
 	 */
 	public static String deformat(String number, char localizedDecimalPoint) {

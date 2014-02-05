@@ -16,6 +16,7 @@ public class AllTests extends TestCase {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(BigFractionUtilsTest.class);
 		suite.addTestSuite(MathUtilsTest.class);
+		suite.addTestSuite(NumberFormatUtilsTest.class);
 		//$JUnit-END$
 		return suite;
 	}
