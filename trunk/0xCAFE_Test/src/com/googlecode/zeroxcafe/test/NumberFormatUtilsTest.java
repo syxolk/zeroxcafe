@@ -18,7 +18,7 @@ public class NumberFormatUtilsTest extends TestCase {
 
 	public void testFormatException() {
 		try {
-			NumberFormatUtils.format(null, '.', false);
+			NumberFormatUtils.format(null, '.');
 			fail("no exception");
 		} catch (Exception e) {
 			assertEquals(NullPointerException.class, e.getClass());

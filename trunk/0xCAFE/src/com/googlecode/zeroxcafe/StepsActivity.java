@@ -80,7 +80,7 @@ public class StepsActivity extends Activity {
 					content.append("<p>")
 							.append(getString(R.string.steps_what,
 									NumberFormatUtils.format(number,
-											localizedDecimalPoint,false), baseFrom,
+											localizedDecimalPoint), baseFrom,
 									baseTo)).append("</p>");
 
 					// STEP 1
@@ -91,7 +91,7 @@ public class StepsActivity extends Activity {
 
 					content.append("(")
 							.append(NumberFormatUtils.format(number,
-									localizedDecimalPoint,false)).append(")<sub>")
+									localizedDecimalPoint)).append(")<sub>")
 							.append(baseFrom).append("</sub> = ");
 
 					String numberBeforeDec = "", numberAfterDec = "";
@@ -274,6 +274,14 @@ public class StepsActivity extends Activity {
 
 						resNumber.append(resNumberFracPart);
 
+						if (sumDecPart.compareTo(BigFraction.ZERO) > 0
+								&& resNumberFracPart
+										.indexOf(String
+												.valueOf(MathUtils.PERIODICAL_FRACTION_INDICATOR)) == -1) {
+							resNumber
+									.append(MathUtils.UNFINISHED_DECIMAL_PLACES_INDICATOR);
+						}
+
 						content.append("</table>");
 					}
 
@@ -283,12 +291,13 @@ public class StepsActivity extends Activity {
 
 					content.append("(")
 							.append(NumberFormatUtils.format(number,
-									localizedDecimalPoint,false))
+									localizedDecimalPoint, false))
 							.append(")<sub>")
 							.append(baseFrom)
 							.append("</sub> = (")
 							.append(NumberFormatUtils.format(
-									resNumber.toString(), localizedDecimalPoint,true))
+									resNumber.toString(),
+									localizedDecimalPoint, true))
 							.append(")<sub>").append(baseTo).append("</sub>");
 
 				} else if (!isCompat) {
