@@ -36,7 +36,6 @@
     <string name="help_ellipsis">The ellipsis character (&#8230;) at the end of a number
         is indicating an unfinished computation of digits after the decimal point.</string>
     <string name="help_developers">Developed by Bitfröst Studios</string>
-    <string name="help_terms">This app is available opensource under https://zeroxcafe.googlecode.com</string>
     <string name="help_version">Current version: %1$s (internal v%2$d)</string>
     <string name="help_rate">Rate in Play store &#8230;</string>
     <string name="help_mail">Write mail to developers &#8230;</string>
