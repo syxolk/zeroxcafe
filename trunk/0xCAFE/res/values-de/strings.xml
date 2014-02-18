@@ -37,7 +37,6 @@
     <string name="help_ellipsis">Die Auslassungspunkte (&#8230;) am Ende einer Zahl zeigen an,
         dass nicht alle Nachkommastellen berechnet wurden.</string>
     <string name="help_developers">Entwickelt von Bitfröst Studios</string>
-    <string name="help_terms">Diese App ist Opensource verfügbar unter https://zeroxcafe.googlecode.com</string>
     <string name="help_version">Aktuelle Version: %1$s (intern v%2$d)</string>
     <string name="help_rate">Im Play Store bewerten &#8230;</string>
     <string name="help_mail">Schreibe Mail an Entwickler &#8230;</string>
