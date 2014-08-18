@@ -6,6 +6,12 @@ sup, sub {
 }
 sub { top: 0.4em; }
 
+/* Table of contents */
+#nav {
+	font-size: 1.17em;
+	font-weight: bold;
+}
+
 /* Up link in every header */
 a[href="#up"]:after {
 	content: " \2191";
