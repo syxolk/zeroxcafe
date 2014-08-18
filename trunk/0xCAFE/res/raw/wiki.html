@@ -1,33 +1,35 @@
 <!doctype html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<title>0xCAFE Wiki</title>
 	<style type="text/css">{{style}}</style>
 </head>
 <body>
-	<h1><a name="up">0xCAFE Wiki</a></h1>
+	<h1 id="up"><a>0xCAFE Wiki</a></h1>
 	<h2>Table of contents</h2>
-	<h3>
-	<ol>
-		<li><a href="#systems">Numeral systems</a></li>
-		<ul>
-			<li><a href="#dec_system">Decimal (10) system</a></li>
-			<li><a href="#bin_system">Binary (2) system</a></li>
-			<li><a href="#hex_system">Hexadecimal (16) system</a></li>
-			<li><a href="#oct_system">Octal (8) system</a></li>
-		</ul>
-		<li><a href="#algorithms">Conversion algorithms</a></li>
-		<ul>
-			<li><a href="#check_method">Check method</a></li>
-			<li><a href="#mod_method">Modulo method</a></li>
-			<li><a href="#mult_method">Multiply method</a></li>
-			<li><a href="#hex_4bit_method">4-bit-block method for hex</a></li>
-			<li><a href="#oct_3bit_method">3-bit-block method for oct</a></li>
-		</ul>
+	<ol id="nav">
+		<li><a href="#systems">Numeral systems</a>
+			<ul>
+				<li><a href="#dec_system">Decimal (10) system</a></li>
+				<li><a href="#bin_system">Binary (2) system</a></li>
+				<li><a href="#hex_system">Hexadecimal (16) system</a></li>
+				<li><a href="#oct_system">Octal (8) system</a></li>
+			</ul>
+		</li>
+		<li><a href="#algorithms">Conversion algorithms</a>
+			<ul>
+				<li><a href="#check_method">Check method</a></li>
+				<li><a href="#mod_method">Modulo method</a></li>
+				<li><a href="#mult_method">Multiply method</a></li>
+				<li><a href="#hex_4bit_method">4-bit-block method for hex</a></li>
+				<li><a href="#oct_3bit_method">3-bit-block method for oct</a></li>
+			</ul>
+		</li>
 		<li><a href="#links">External links</a></li>
 	</ol>
-	</h3>
 	
-	<h2><a name="systems" href="#up">Numeral systems</a></h2>
+	<h2 id="systems"><a href="#up">Numeral systems</a></h2>
 	
 	<p>There are different representations of numbers that we are and we were using around the world.
 	The Romans for example invented their own system consisting of the letters I, V, X, L, C, D and M.
@@ -44,7 +46,7 @@
 	Each digit in a number is multiplied by the base powered by the position starting with 0.
 	So for example the decimal number 256 is equals to 2&middot;10<sup>2</sup> + 5&middot;10<sup>1</sup> + 6&middot;10<sup>0</sup></p>
 	
-	<h3><a name="dec_system" href="#up">Decimal system</a></h3>
+	<h3 id="dec_system"><a href="#up">Decimal system</a></h3>
 	
 	<p>The decimal system is a positional system that uses the base 10.
 	The digits are 0 (zero), 1 (one), 2 (two), 3 (three), 4 (four), 5 (five), 6 (six), 7 (seven), 8 (eight), 9 (nine).
@@ -54,7 +56,7 @@
 	For that it uses the so called decimal point, that separates the positive exponents from the negative ones.
 	Example: The number 12,45 is equals to 1&middot;10<sup>1</sup> + 2&middot;10<sup>0</sup> + 4&middot;10<sup>-1</sup> + 5&middot;10<sup>-2</sup> </p>
 	
-	<h3><a name="bin_system" href="#up">Binary system</a></h3>
+	<h3 id="bin_system"><a href="#up">Binary system</a></h3>
 	
 	<p>The binary system is a positional system that uses the base 2.
 	The digits are 0 (zero) and 1 (one).
@@ -64,7 +66,7 @@
 	All numbers, integers as well as floating point numbers, are represented in your computer as a sequence of bits (A bit is either 0 or 1).
 	Eight Bits are grouped together into a byte, which can represent 2<sup>8</sup> = 256 different states.</p>
 	
-	<h3><a name="hex_system" href="#up">Hexadecimal system</a></h3>
+	<h3 id="hex_system"><a href="#up">Hexadecimal system</a></h3>
 	
 	<p>The hexadecimal system is a positional system that uses the base 16.
 	The digits are 0 (zero), 1 (one), 2 (two), 3 (three), 4 (four), 5 (five), 6 (six), 7 (seven), 8 (eight), 9 (nine),
@@ -75,7 +77,7 @@
 	therefore the hex system is also used to display memory addresses in the computer.
 	Hexadecimal numbers are often prefixed with 0x.</p>
 	
-	<h3><a name="oct_system" href="#up">Octal system</a></h3>
+	<h3 id="oct_system"><a href="#up">Octal system</a></h3>
 	
 	<p>The octal system is a positional system that uses the base 8.
 	The digits are 0 (zero), 1 (one), 2 (two), 3 (three), 4 (four), 5 (five), 6 (six) and 7 (seven).
@@ -83,13 +85,13 @@
 	therefore it was used in machines with 12-, 24- and 36-bit words.
 	Octal numbers are often prefixed with a 0.</p>
 	
-	<h2><a name="algorithms" href="#up">Conversion algorithms</a></h2>
+	<h2 id="algorithms"><a href="#up">Conversion algorithms</a></h2>
 	
 	<p>Often you need to convert between different numeral systems with different bases.
 	That is also the reason you are using this app.
 	But if you want to know how you can do this on your own then you should read the following chapter.</p>
 	
-	<h3><a name="check_method" href="#up">Check method</a></h3>
+	<h3 id="check_method"><a href="#up">Check method</a></h3>
 	
 	<p>The check method can be used to convert decimal numbers into binary numbers.
 	For each power of 2, beginning with a rather high one, we check whether it fits into the number.
@@ -121,7 +123,7 @@
 	It is important that you go all the way down to 2<sup>0</sup> even if the number is already 0,
 	otherwise you are missing some zeroes at the end of your result.</p>
 	
-	<h3><a name="mod_method" href="#up">Modulo method</a></h3>
+	<h3 id="mod_method"><a href="#up">Modulo method</a></h3>
 	
 	<p>With the modulo method you can also convert decimal numbers into binary numbers but also into other numeral systems.
 	It is called the 'modulo method' because it uses integer division and the modulo operator.
@@ -162,7 +164,7 @@
 	
 	<p><b>Result: 1980<sub>10</sub> =  7BC<sub>16</sub></b></p>
 	
-	<h3><a name="mult_method" href="#up">Multiply method</a></h3>
+	<h3 id="mult_method"><a href="#up">Multiply method</a></h3>
 	
 	<p>The multiply method is used to convert the fractional part of a decimal number into another numeral system.
 	The algorithm completes the modulo algorithm that is only capable to convert integers.
@@ -183,7 +185,7 @@
 	
 	<p>You have to read the result from top to bottom.</p>
 	
-	<h3><a name="hex_4bit_method" href="#up">4-bit-block method for hex</a></h3>
+	<h3 id="hex_4bit_method"><a href="#up">4-bit-block method for hex</a></h3>
 	
 	<p>This algorithm just uses the fact that every hexadecimal digit represents exactly 4 binary digits.
 	Therefore if you want to convert a binary number into a hexadecimal number then just group the digits
@@ -198,7 +200,7 @@
 	
 	<p><b>Result: 1111010110<sub>2</sub> = 3D6<sub>16</sub></b></p>
 	
-	<h3><a name="oct_3bit_method" href="#up">3-bit-block method for oct</a></h3>
+	<h3 id="oct_3bit_method"><a href="#up">3-bit-block method for oct</a></h3>
 	
 	<p>This algorithm is similar to the 4bit-hex algorithm. It uses the fact that every octal digit
 	represents exactly 3 bits. Therefore if you want to convert a binary number into an octal number
@@ -214,7 +216,7 @@
 	
 	<p><b>Result: 1111010110<sub>2</sub> = 1726<sub>8</sub></b></p>
 	
-	<h2><a name="links" href="#up">External links</a></h2>
+	<h2 id="links"><a href="#up">External links</a></h2>
 	
 	<ul>
 		<li><a href="http://en.wikipedia.org/wiki/Numeric_system">Numeric system (Wikipedia)</a></li>
