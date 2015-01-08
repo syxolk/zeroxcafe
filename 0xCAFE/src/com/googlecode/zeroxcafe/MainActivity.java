@@ -28,7 +28,7 @@ import android.widget.Toast;
  * 
  * @author Hans
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CustomKeyboardListener {
 
 	CustomKeyboard mCustomKeyboard;
 
@@ -47,8 +47,8 @@ public class MainActivity extends Activity {
 		outputSpinner = (Spinner) findViewById(R.id.outputType);
 		inputEdit = (EditText) findViewById(R.id.inputText);
 
-		initSpinner((Spinner) findViewById(R.id.inputType));
-		initSpinner((Spinner) findViewById(R.id.outputType));
+		initSpinner((Spinner) findViewById(R.id.inputType), 10);
+		initSpinner((Spinner) findViewById(R.id.outputType), 2);
 
 		EditText inputEdit = (EditText) findViewById(R.id.inputText);
 		inputEdit.addTextChangedListener(new TextWatcher() {
@@ -66,15 +66,17 @@ public class MainActivity extends Activity {
 		});
 
 		mCustomKeyboard = new CustomKeyboard(this, R.id.keyboardview,
-				R.xml.hexkbd);
+				R.xml.hexkbd, this);
 		mCustomKeyboard.registerEditText(R.id.inputText);
 	}
 
-	private void initSpinner(Spinner spinner) {
+	private void initSpinner(Spinner spinner, int preselectedBase) {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.bases, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
+		
+		spinner.setSelection(getPosByBase(preselectedBase));
 
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onNothingSelected(AdapterView<?> parent) {
@@ -150,6 +152,10 @@ public class MainActivity extends Activity {
 
 	private int getBaseByPos(int pos) {
 		return pos + 2;
+	}
+	
+	private int getPosByBase(int base) {
+		return base - 2;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -234,5 +240,14 @@ public class MainActivity extends Activity {
 			mCustomKeyboard.hideCustomKeyboard();
 		else
 			this.finish();
+	}
+
+	@Override
+	public void swapBases() {
+		int inputBase = inputSpinner.getSelectedItemPosition();
+		int outputBase = outputSpinner.getSelectedItemPosition();
+		
+		inputSpinner.setSelection(outputBase);
+		outputSpinner.setSelection(inputBase);
 	}
 }
