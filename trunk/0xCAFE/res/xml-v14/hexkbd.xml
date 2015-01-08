@@ -34,6 +34,7 @@
     <Row android:horizontalGap="0px">
         <Key android:codes="48"    android:keyLabel="0" android:horizontalGap="12.5%p" android:keyEdgeFlags="left" />
         <Key android:codes="46"    android:keyLabel="@string/keyboard_decimalpoint" />
-        <Key android:codes="-3"    android:keyIcon="@drawable/ic_action_keyboard" android:keyWidth="25%p" android:horizontalGap="6.25%p" android:keyEdgeFlags="right" />
+        <Key android:codes="-3"    android:keyIcon="@drawable/ic_action_keyboard" android:keyWidth="25%p" android:horizontalGap="6.25%p" />
+        <Key android:codes="55007" android:keyIcon="@drawable/ic_action_swap" android:keyWidth="25%p" android:horizontalGap="6.25%p" android:keyEdgeFlags="right" />
     </Row>
 </Keyboard>

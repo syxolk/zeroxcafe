@@ -33,14 +33,18 @@ public class CustomKeyboard {
 	public final static int CodeRight = 55003;
 	public final static int CodeAllRight = 55004;
 	public final static int CodeClear = 55006;
+	public final static int CodeSwap = 55007;
 
 	private Activity activity;
 	private KeyboardView mKeyboardView;
+	
+	private CustomKeyboardListener listener;
 
 	public CustomKeyboard(Activity activity, int keyboardViewId,
-			int keyboardXmlId) {
+			int keyboardXmlId, CustomKeyboardListener listener) {
 		this.activity = activity;
-
+		this.listener = listener;
+		
 		// Create the Keyboard
 		Keyboard mKeyboard = new Keyboard(activity, keyboardXmlId);
 
@@ -150,6 +154,10 @@ public class CustomKeyboard {
 				edittext.setSelection(0);
 			} else if (primaryCode == CodeAllRight) {
 				edittext.setSelection(edittext.length());
+			} else if (primaryCode == CodeSwap) {
+				if(listener != null) {
+					listener.swapBases();
+				}
 			} else {// Insert character
 				if (primaryCode == CodeDecimalPoint) {
 					primaryCode = edittext.getContext()
