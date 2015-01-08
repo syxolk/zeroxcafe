@@ -6,6 +6,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +38,11 @@ public class MainActivity extends Activity implements CustomKeyboardListener {
 	private Spinner inputSpinner;
 	private Spinner outputSpinner;
 	private EditText inputEdit;
+	
+	private static final String SETTING_INPUT_BASE = "input_base";
+	private static final String SETTING_OUTPUT_BASE = "output_base";
+	private static final String SETTING_INPUT_TEXT = "input_text";
+	private static final String SETTING_OUTPUT_TEXT = "output_text";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,30 @@ public class MainActivity extends Activity implements CustomKeyboardListener {
 		mCustomKeyboard.registerEditText(R.id.inputText);
 	}
 
+	public void onResume() {
+		super.onResume();
+		
+		// load input and output bases
+		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+		inputSpinner.setSelection(getPosByBase(prefs.getInt(SETTING_INPUT_BASE, 10)));
+		outputSpinner.setSelection(getPosByBase(prefs.getInt(SETTING_OUTPUT_BASE, 2)));
+		inputEdit.setText(prefs.getString(SETTING_INPUT_TEXT, ""));
+		outputView.setText(prefs.getString(SETTING_OUTPUT_TEXT, ""));
+	}
+	
+	public void onPause() {
+		super.onPause();
+		
+		// save input and output bases
+		SharedPreferences prefs= getPreferences(MODE_PRIVATE);
+		Editor editor = prefs.edit();
+		editor.putInt(SETTING_INPUT_BASE, getBaseByPos(inputSpinner.getSelectedItemPosition()));
+		editor.putInt(SETTING_OUTPUT_BASE, getBaseByPos(outputSpinner.getSelectedItemPosition()));
+		editor.putString(SETTING_INPUT_TEXT, inputEdit.getText().toString());
+		editor.putString(SETTING_OUTPUT_TEXT, outputView.getText().toString());
+		editor.commit();
+	}
+	
 	private void initSpinner(Spinner spinner, int preselectedBase) {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 				this, R.array.bases, android.R.layout.simple_spinner_item);

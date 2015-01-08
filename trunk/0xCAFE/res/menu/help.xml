@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <!--
     <item
         android:id="@+id/action_rate"
         android:icon="@drawable/ic_action_important"
@@ -12,5 +13,6 @@
         android:icon="@drawable/ic_action_email"
         android:showAsAction="ifRoom"
         android:title="@string/help_mail"/>
+    -->
 
 </menu>
