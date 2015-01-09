@@ -6,6 +6,7 @@
     <string name="output_empty">-</string>
     <string name="output_error_incompatible">Inkompatible Eingabezahl</string>
     <string name="output_error_too_much_decimal_points">Die Zahl hat mehr als einen Dezimalpunkt.</string>
+    <string name="visual_arrow">&#8658;</string>
     
     <string-array name="bases">
         <item>Basis 2 (dual)</item>
