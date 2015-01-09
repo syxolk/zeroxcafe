@@ -43,6 +43,8 @@ public class MainActivity extends Activity implements CustomKeyboardListener {
 	private static final String SETTING_OUTPUT_BASE = "output_base";
 	private static final String SETTING_INPUT_TEXT = "input_text";
 	private static final String SETTING_OUTPUT_TEXT = "output_text";
+	private static final String SETTING_INPUT_TEXT_SELECTION_START = "input_text_selection_start";
+	private static final String SETTING_INPUT_TEXT_SELECTION_END = "input_text_selection_end";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class MainActivity extends Activity implements CustomKeyboardListener {
 		outputSpinner.setSelection(getPosByBase(prefs.getInt(SETTING_OUTPUT_BASE, 2)));
 		inputEdit.setText(prefs.getString(SETTING_INPUT_TEXT, ""));
 		outputView.setText(prefs.getString(SETTING_OUTPUT_TEXT, ""));
+		inputEdit.setSelection(prefs.getInt(SETTING_INPUT_TEXT_SELECTION_START, 0), prefs.getInt(SETTING_INPUT_TEXT_SELECTION_END, 0));
 	}
 	
 	public void onPause() {
@@ -98,6 +101,8 @@ public class MainActivity extends Activity implements CustomKeyboardListener {
 		editor.putInt(SETTING_OUTPUT_BASE, getBaseByPos(outputSpinner.getSelectedItemPosition()));
 		editor.putString(SETTING_INPUT_TEXT, inputEdit.getText().toString());
 		editor.putString(SETTING_OUTPUT_TEXT, outputView.getText().toString());
+		editor.putInt(SETTING_INPUT_TEXT_SELECTION_START, inputEdit.getSelectionStart());
+		editor.putInt(SETTING_INPUT_TEXT_SELECTION_END, inputEdit.getSelectionEnd());
 		editor.commit();
 	}
 	
