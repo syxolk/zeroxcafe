@@ -6,6 +6,7 @@
     <string name="output_empty">-</string>
     <string name="output_error_incompatible">Incompatible number.</string>
     <string name="output_error_too_much_decimal_points">Number has more than one decimal point.</string>
+    <string name="visual_arrow">&#8658;</string>
 
     <string-array name="bases">
         <item>base 2 (binary)</item>
